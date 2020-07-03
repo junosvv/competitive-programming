@@ -1,0 +1,128 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define int long long
+#define REP(i, l, r) for (int i=(l); i<(r); ++i)
+#define RREP(i, r, l) for (int i=(r); i>(l); --i)
+#define CASET int _T; cin >> _T; REP(caset, 0, _T)
+#define print(x) cout << to_string(x) << '\n'
+#define vi vector<int>
+#define vb vector<bool>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vvb vector<vb>
+#define pii pair<int,int>
+#define t3i tuple<int,int,int>
+#define mii map<int,int>
+#define sq(x) (x)*(x)
+#define inv(x) powa(x, MOD-2)
+ 
+int INF = 1LL<<60;
+int MOD = 1e9+7;
+ 
+string to_string(char &c) {string x(1, c); return x;}
+string to_string(string &s) {return s;}
+string to_string(const char s[]) {return (string)s;}
+string to_string(vb &v) {
+    string res;
+    for (const bool &x : v) res += to_string(x) + ' ';
+    return res;
+}
+template <class C> string to_string(C &v) {
+    string res;
+    for (auto &x : v) res += to_string(x) + ' ';
+    return res;
+}
+template <typename A> istream &operator>>(istream &is, vector<A> &v) {
+    for (auto &x : v) is >> x;
+    return is;
+}
+template <typename A, typename B> ostream &operator<<(ostream &os, pair<A, B> pr) {
+    os << '(' << pr.first << ", " << pr.second << ')';
+    return os;
+}
+ostream &operator<<(ostream &os, char &c) {os << (char)c; return os;}
+ostream &operator<<(ostream &os, string &s) {for (char &c : s) os << (char)c; return os;}
+ostream &operator<<(ostream &os, const char s[]) {os << (string)s; return os;}
+ostream &operator<<(ostream &os, vb &v) {
+    bool first = true;
+    os << '[';
+    for (const bool &x : v) {
+        if (!first) os << ',' << ' ';
+        first = false;
+        os << x;
+    }
+    os << ']';
+    return os;
+}
+template <class C> ostream &operator<<(ostream &os, C &v) {
+    bool first = true;
+    os << '[';
+    for (auto &x : v) {
+        if (!first) os << ',' << ' ';
+        first = false;
+        os << x;
+    }
+    os << ']';
+    return os;
+}
+string bin_string(int x) {
+    const int d = 32;
+    string res(d, ' ');
+    REP(i, 0, d) res[d-1-i] = '0'+(x>>i & 1LL);
+    return res;
+}
+int powa(int base, int exp) {
+    int res = 1;
+    while (exp) {
+        if (exp&1) res = res*base % MOD;
+        base = base*base % MOD;
+        exp >>= 1;
+    }
+    return res;
+}
+
+bool compare(vi &a, vi &b) {
+    return *max_element(a.begin(), a.end()) > *max_element(b.begin(), b.end());
+}
+ 
+main() {
+    ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+
+    CASET {
+        int R, C;
+        cin >> R >> C;
+        vvi grid(C, vi(R));
+        REP(r, 0, R) REP(c, 0, C) cin >> grid[c][r];
+        sort(grid.begin(), grid.end(), compare);
+
+        C=min(C,R);
+        vvi grid0 = grid;
+        grid.assign(R, vi(C));
+        REP(r, 0, R) REP(c, 0, C) grid[r][c] = grid0[c][r];
+
+        vvi best(C, vi(1<<R));
+        REP(k, 0, C) {
+            REP(mask, 0, 1<<R) {
+                REP(s, 0, R) {
+                    int cur = 0;
+                    REP(i, 0, R) if (mask>>i&1LL) cur += grid[(i+s)%R][k];
+                    best[k][mask] = max(best[k][mask], cur);
+                }
+            }
+        }
+
+        vi dp(1<<R);
+        REP(k, 1, C+1) {
+            vi dp2(1<<R);
+            REP(mask, 0, 1<<R) {
+                for (int submask=mask; ; submask=(submask-1)&mask) {
+                    dp2[mask] = max(dp2[mask], best[k-1][mask^submask] + dp[submask]);
+                    if (submask==0) break;
+                }
+            }
+            dp = dp2;
+        }
+        print(*max_element(dp.begin(), dp.end()));
+    }
+}

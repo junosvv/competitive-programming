@@ -1,0 +1,119 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define int long long
+#define REP(i, l, r) for (int i=(l); i<(r); ++i)
+#define RREP(i, r, l) for (int i=(r); i>(l); --i)
+#define CASET int _T; cin >> _T; REP(caset, 0, _T)
+#define vi vector<int>
+#define vb vector<bool>
+#define vs vector<string>
+#define vvi vector<vi>
+#define vvb vector<vb>
+#define pii pair<int,int>
+#define t3i tuple<int,int,int>
+#define mii map<int,int>
+#define vpii vector<pii>
+#define vt3i vector<t3i>
+#define sq(x) (x)*(x)
+#define inv(x) powa(x, MOD-2)
+ 
+long long INF = 1LL<<60;
+long long MOD = 1e9+7;
+
+template <typename A, typename B> istream &operator>>(istream &is, pair<A, B> &pr) {is >> pr.first >> pr.second; return is;}
+template <typename A> istream &operator>>(istream &is, vector<A> &v) {for (auto &x : v) is >> x; return is;}
+ostream &operator<<(ostream &os, char &c) {os << (char)c; return os;}
+ostream &operator<<(ostream &os, const char s[]) {os << (string)s; return os;}
+ostream &operator<<(ostream &os, string &s) {for (char &c : s) os << (char)c; return os;}
+template <typename A, typename B> ostream &operator<<(ostream &os, pair<A, B> pr) {os << '(' << pr.first << ", " << pr.second << ')'; return os;}
+ostream &operator<<(ostream &os, vb &v) {
+    bool first = true;
+    os << '[';
+    for (const bool &x : v) {
+        if (!first) os << ", ";
+        first = false;
+        os << x;
+    }
+    os << ']';
+    return os;
+}
+template <class C> ostream &operator<<(ostream &os, C &v) {
+    bool first = true;
+    os << '[';
+    for (auto &x : v) {
+        if (!first) os << ", ";
+        first = false;
+        os << x;
+    }
+    os << ']';
+    return os;
+}
+string bin_string(int x) {
+    const int d = 32;
+    string res(d, ' ');
+    REP(i, 0, d) res[d-1-i] = '0'+(x>>i & 1LL);
+    return res;
+}
+int powa(int base, int exp) {
+    int res = 1;
+    while (exp) {
+        if (exp&1) res = res*base % MOD;
+        base = base*base % MOD;
+        exp >>= 1;
+    }
+    return res;
+}
+
+void upd(vi &tree, int x, int delta) {
+    x += tree.size()/2;
+    tree[x] = delta;
+    x /= 2;
+    while (x) {
+        tree[x] = max(tree[2*x], tree[2*x+1]);
+        x /= 2;
+    }
+}
+
+int query(vi &tree, int l, int r) {
+    l += tree.size() / 2;
+    r += tree.size() / 2;
+    int res = 0;
+    while (l <= r) {
+        if (l&1) res = max(res, tree[l++]);
+        if (!(r&1)) res = max(res, tree[r--]);
+        l /= 2;
+        r /= 2;
+    }
+    return res;
+}
+
+main() {
+    ios::sync_with_stdio(0), cin.tie(0);
+    
+    int n;
+    string s;
+    cin >> n >> s;
+
+    vvi occ(26);
+    REP(i, 0, n) {
+        occ[s[i]-'a'].push_back(i);
+    }
+
+    int K = 25;
+    
+    vi dp(n, 1);
+    vvi aux(26, vi(2*n, 0));
+    RREP(i, n-1, -1) {
+        dp[i] = 1 + query(aux[s[i]-'a'], i+1, n-1);
+        REP(c, s[i]-'a'+1, 26) {
+            upd(aux[c], i, dp[i]);
+        }
+    }
+    int res = *max_element(dp.begin(), dp.end());
+    if (res >= 3) cout << "NO";
+    else {
+        cout << "YES\n";
+        REP(i, 0, n) cout << dp[i]-1;
+    }
+}
