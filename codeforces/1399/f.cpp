@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
  
-#define int long long
+#define lglg long long
 #define dub long double
 #define FOR(i, a, b) for (int i=(a); i<(b); ++i)
 #define ROF(i, a, b) for (int i=(a); i>(b); --i)
@@ -78,9 +78,57 @@ int powa(int base, int exp) {
 }
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
-
+ 
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
-
     
+    CASET {
+        int n;
+        cin >> n;
+        vpii segs(n);
+ 
+        set<int> raw;
+        mii trans;
+ 
+        FOR(i, 0, n) {
+            cin >> segs[i];
+            raw.insert(segs[i].first);
+            raw.insert(segs[i].second);
+        }
+        
+        int cnt = 0;
+        for (int x : raw) {
+            trans[x] = cnt;
+            ++cnt;
+        }
+        
+        vvi byr(cnt);
+        FOR(i, 0, n) {
+            segs[i].first = trans[segs[i].first];
+            segs[i].second = trans[segs[i].second];
+ 
+            byr[segs[i].second].push_back(segs[i].first);
+        }
+        
+        vvi dp(cnt, vi(cnt));
+        FOR(s, 0, cnt) {
+            FOR(l, 0, cnt-s) {
+                int r = l + s;
+                if (r) {
+                    dp[l][r] = dp[l][r-1];
+                }
+                bool cover = false;
+                for (int segl : byr[r]) {
+                    if (segl == l) {
+                        cover = true;
+                    } else if (segl > l) {
+                        maxi(dp[l][r], dp[l][segl-1] + dp[segl][r]);
+                    }
+                }
+                dp[l][r] += cover;
+                // print(l, r, ":", dp[l][r]);
+            }
+        }
+        print(dp[0][cnt-1]);
+    }
 }

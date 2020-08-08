@@ -81,6 +81,30 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
-
     
+    CASET {
+        int n;
+        cin >> n;
+        vi a(n);
+        FOR(i, 0, n) {
+            char x;
+            cin >> x;
+            a[i] = x-'0';
+        }
+        
+        vvi stacks(2);
+        vi res(n);
+        FOR(i, 0, n) {
+            if (stacks[!a[i]].empty()) {
+                res[i] = stacks[0].size() + stacks[1].size() + 1;
+            } else {
+                res[i] = stacks[!a[i]].back();
+                stacks[!a[i]].pop_back();
+            }
+            stacks[a[i]].push_back(res[i]);
+        }
+        print(stacks[0].size() + stacks[1].size());
+        FOR(i, 0, n) cout << res[i] << ' ';
+        print();
+    }
 }

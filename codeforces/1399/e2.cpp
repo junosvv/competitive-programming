@@ -81,6 +81,72 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
-
     
+    CASET {
+        int n, S;
+        cin >> n >> S;
+
+        vector<vt3i> nodes(n);
+        FOR(i, 0, n-1) {
+            int u, v, w, c;
+            cin >> u >> v >> w >> c;
+            --u; --v; --c;
+            nodes[u].emplace_back(v, w, c);
+            nodes[v].emplace_back(u, w, c);
+        }
+
+        vvi res(2);
+        FOR(c, 0, 2) {
+            vi numleaves(n);
+            vi weight(n);
+            weight[0] = 1;
+            set<pii> imps;
+            int impsum = 0;
+
+            function<void(int)> dfs = [&](int u) {
+                for (t3i tup : nodes[u]) {
+                    int v, w, c2;
+                    tie(v, w, c2) = tup;
+                    if (weight[v] == 0) {
+                        weight[v] = w;
+                        dfs(v);
+                        if (c2 == c) {
+                            imps.emplace(w*numleaves[v] - w/2*numleaves[v], v);
+                            impsum += w*numleaves[v];
+                        }
+                        numleaves[u] += numleaves[v];
+                    }
+                }
+                if (!numleaves[u]) {
+                    numleaves[u] = 1;
+                }
+            };
+
+            dfs(0);
+            int cnt = 0;
+            res[c].push_back(impsum);
+            while (impsum) {
+                ++cnt;
+                int v = (*imps.rbegin()).second;
+                imps.erase(prev(imps.end()));
+                impsum -= weight[v] * numleaves[v];
+                weight[v] /= 2;
+                imps.emplace(weight[v]*numleaves[v]-weight[v]/2*numleaves[v], v);
+                impsum += weight[v] * numleaves[v];
+                res[c].push_back(impsum);
+            }
+        }
+        
+        int j = SIZE(res[1]) - 1;
+        int outres = INF;
+        FOR(i, 0, SIZE(res[0])) {
+            while (j >= 1 && res[0][i] + res[1][j-1] <= S) {
+                --j;
+            }
+            if (res[0][i] + res[1][j] <= S) {
+                mini(outres, i+2*j);
+            }
+        }
+        print(outres);
+    }
 }

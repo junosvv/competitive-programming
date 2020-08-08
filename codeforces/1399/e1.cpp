@@ -81,6 +81,54 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
-
     
+    CASET {
+        int n, S;
+        cin >> n >> S;
+
+        vvpii nodes(n);
+        FOR(i, 0, n-1) {
+            int u, v, w;
+            cin >> u >> v >> w;
+            --u; --v;
+            nodes[u].emplace_back(v, w);
+            nodes[v].emplace_back(u, w);
+        }
+
+        vi numleaves(n);
+        vi weight(n);
+        weight[0] = 1;
+        set<pii> imps;
+        int impsum = 0;
+
+        function<void(int)> dfs = [&](int u) {
+            for (pii pr : nodes[u]) {
+                int v, w;
+                tie(v, w) = pr;
+                if (weight[v] == 0) {
+                    weight[v] = w;
+                    dfs(v);
+                    imps.emplace(w*numleaves[v] - w/2*numleaves[v], v);
+                    impsum += w*numleaves[v];
+                    numleaves[u] += numleaves[v];
+                }
+            }
+            if (!numleaves[u]) {
+                numleaves[u] = 1;
+            }
+        };
+
+        dfs(0);
+        int res = 0;
+        while (impsum > S) {
+            ++res;
+            int v = (*imps.rbegin()).second;
+            imps.erase(prev(imps.end()));
+            impsum -= weight[v] * numleaves[v];
+            weight[v] /= 2;
+            imps.emplace(weight[v]*numleaves[v]-weight[v]/2*numleaves[v], v);
+            impsum += weight[v] * numleaves[v];
+        }
+        print(res);
+    }
 }

@@ -81,6 +81,27 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
-
     
+    CASET {
+        int n;
+        cin >> n;
+        vi a(n);
+        cin >> a;
+        vi occ(2*n);
+        FOR(i, 0, n) ++occ[a[i]];
+        int res = 0;
+        FOR(k, 2, 2*n+1) {
+            int cur = 0;
+            FOR(i, 1, k) {
+                int j = k-i;
+                if (i>=j) break;
+                cur += min(occ[i], occ[j]);
+            }
+            if (!(k&1)) {
+                cur += occ[k/2]/2;
+            }
+            maxi(res, cur);
+        }
+        print(res);
+    }
 }
