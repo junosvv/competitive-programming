@@ -82,10 +82,61 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    CASET {
-        int n;
-        cin >> n;
-        FOR(i, 0, n) cout << i+1 << ' ';
-        print();
+    int R, C;
+    cin >> R >> C;
+ 
+    vvi grid(R, vi(C));
+    FOR(r, 0, R) FOR(c, 0, C) {
+        char x;
+        cin >> x;
+        grid[r][c] = x - '0';
     }
+    
+    if (R >= 4 && C >= 4) {
+        print(-1);
+        exit(0);
+    }
+ 
+    if (R >= 4) {
+        vvi grid0 = grid;
+        swap(R, C);
+        grid.assign(R, vi(C));
+        FOR(r, 0, R) FOR(c, 0, C) grid[r][c] = grid0[c][r];
+    }
+ 
+    vvi dp(C+1, vi(1<<R, INF));
+    dp[0][0] = 0;
+    FOR(c, 1, C+1) {
+        FOR(mask, 0, 1<<R) {
+            FOR(prevmask, 0, 1<<R) {
+                bool fail = false;
+                FOR(r, 0, R-1) {
+                    if (c != 1 && !((mask>>r&1) ^ (mask>>(r+1)&1) ^ (prevmask>>r&1) ^ (prevmask>>(r+1)&1))) {
+                        fail = true;
+                    }
+                }
+                if (fail) continue;
+ 
+                int cur = 0;
+                FOR(r, 0, R) {
+                    cur += (grid[r][c-1] != (mask>>r&1));
+                }
+                cur += dp[c-1][prevmask];
+                mini(dp[c][mask], cur);
+            }
+        }
+        // print(dp[c]);
+    }
+ 
+    int res = INF;
+    FOR(mask, 0, 1<<R) {
+        mini(res, dp[C][mask]);
+    }
+    print(res);
 }
+ 
+/*
+2 6
+011010
+101000
+*/

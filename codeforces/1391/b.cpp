@@ -83,9 +83,19 @@ signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
     CASET {
-        int n;
-        cin >> n;
-        FOR(i, 0, n) cout << i+1 << ' ';
-        print();
+        int R, C;
+        cin >> R >> C;
+ 
+        vs grid(R, string(C, ' '));
+        cin >> grid;
+ 
+        int res = 0;
+        FOR(r, 0, R) {
+            if (grid[r][C-1] == 'R') ++res;
+        }
+        FOR(c, 0, C) {
+            if (grid[R-1][c] == 'D') ++res;
+        }
+        print(res);
     }
 }

@@ -82,10 +82,11 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    CASET {
-        int n;
-        cin >> n;
-        FOR(i, 0, n) cout << i+1 << ' ';
-        print();
-    }
+    int n;
+    cin >> n;
+    int a = 1;
+    int b = 1;
+    FOR(i, 1, n+1) a = a * i % MOD;
+    FOR(i, 0, n-1) b = b * 2 % MOD;
+    print((a + MOD - b) % MOD);
 }

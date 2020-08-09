@@ -78,14 +78,71 @@ int powa(int base, int exp) {
 }
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
- 
+
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
-    
-    CASET {
-        int n;
-        cin >> n;
-        FOR(i, 0, n) cout << i+1 << ' ';
-        print();
+
+    int n;
+    cin >> n;
+    vs strings(n);
+    FOR(i, 0, n) {
+        cin >> strings[i];
+        reverse(ALL(strings[i]));
     }
+
+    vi par(1);
+    string letter(1, '#');
+    vvi child(1, vi(26));
+    vb starred(1);
+    vi stars(n);
+    FOR(i, 0, n) {
+        int pt = 0;
+        // print("string:", strings[i]);
+        FOR(j, 0, SIZE(strings[i])) {
+            // print("reading", strings[i][j]);
+            if (child[pt][strings[i][j]-'a'] == 0) {
+                child[pt][strings[i][j]-'a'] = SIZE(par);
+                par.push_back(pt);
+                child.push_back(vi(26));
+                letter += strings[i][j];
+                starred.push_back(false);
+                // print("HERE");
+            }
+            // print("thing", child);
+            pt = child[pt][strings[i][j]-'a'];
+            // print(pt, letter[pt]);
+        }
+        starred[pt] = true;
+        stars[i] = pt;
+    }
+    // print(letter);
+    // print(par);
+    // print(child);
+    
+    int res = 0;
+    FOR(i, 0, n) {
+        // print("PROCESSING", strings[i]);
+        int pt = stars[i];
+        vb seen(26);
+        int prev;
+        bool first = true;
+        while (pt != 0) {
+            seen[letter[pt]-'a'] = true;
+            // print("seen", letter[pt]);
+            prev = letter[pt]-'a';
+            pt = par[pt];
+            // print("at", letter[pt]);
+            FOR(chr, 0, 26) {
+                if (child[pt][chr] != 0) if (!first) {
+                    // print("eye", (char)(chr+'a'));
+                    if (starred[child[pt][chr]] && seen[letter[child[pt][chr]]-'a']) {
+                        // print("child", (char)(chr+'a'), "counted!");
+                        ++res;
+                    }
+                }
+            }
+            first = false;
+        }
+    }
+    print(res);
 }
