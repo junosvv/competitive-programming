@@ -78,14 +78,89 @@ int powa(int base, int exp) {
 }
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
+
+void bubble(vi &a) {
+    int n = SIZE(a);
+
+    FOR(i, 0, n-1) {
+        ROF(j, n-1, i) {
+            if (a[j-1] > a[j]) {
+                swap(a[j], a[j-1]);
+            }
+        }
+    }
+}
+
+void selection(vi &a) {
+    int n = SIZE(a);
+
+    FOR(i, 0, n-1) {
+        FOR(j, i+1, n) {
+            if (a[j] < a[i]) {
+                swap(a[i], a[j]);
+            }
+        }
+    }
+}
+
+void insertion(vi &a) {
+    int n = SIZE(a);
+
+    FOR(i, 1, n) {
+        ROF(j, i, 0) {
+            if (a[j-1] > a[j]) {
+                swap(a[j-1], a[j]);
+            } else {
+                break;
+            }
+        }
+    }
+}
+
+#include <chrono>
  
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
-    
-    CASET {
-        int n;
-        cin >> n;
-        FOR(i, 0, n) cout << i+1 << ' ';
-        print();
+
+    vector<int> res(3);
+    FOR(j, 0, 100) {
+        int n = 1000;
+        vi a(n);
+        FOR(i, 0, n) a[i] = i;
+        FOR(i, 0, n) {
+            int j = rand() % (i+1);
+            swap(a[i], a[j]);
+        }
+
+        vi b;
+        chrono::steady_clock::time_point begin, end;
+
+        b = a;
+        begin = std::chrono::steady_clock::now();
+        bubble(b);
+        end = std::chrono::steady_clock::now();
+        res[0] += std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
+        if (!is_sorted(ALL(b))) {
+            print("WTF");
+        }
+
+        b = a;
+        begin = std::chrono::steady_clock::now();
+        selection(b);
+        end = std::chrono::steady_clock::now();
+        res[1] += std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
+        if (!is_sorted(ALL(b))) {
+            print("WTF");
+        }
+
+        b = a;
+        begin = std::chrono::steady_clock::now();
+        insertion(b);
+        end = std::chrono::steady_clock::now();
+        res[2] += std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
+        if (!is_sorted(ALL(b))) {
+            print("WTF");
+        }
     }
+    print(res);
 }
