@@ -78,7 +78,7 @@ int powa(int base, int exp) {
 }
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
- 
+
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     

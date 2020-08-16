@@ -82,5 +82,20 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    int n, k;
+    cin >> n >> k;
+
+    vi a(n);
+    cin >> a;
+
+    FOR(i, 1, n) {
+        if (a[i-1] + a[i] >= k) {
+            print("Possible");
+            FOR(j, 1, i) print(j);
+            ROF(j, n-1, i) print(j);
+            print(i);
+            exit(0);
+        }
+    }
+    print("Impossible");
 }

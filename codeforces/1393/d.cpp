@@ -82,5 +82,59 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    int R, C;
+    cin >> R >> C;
+
+    vs grid(R, string(C, ' '));
+    cin >> grid;
+
+    vpii deltas = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+
+    vector<deque<pii>> border(26);
+    FOR(r, 0, R) FOR(c, 0, C) {
+        for (pii delta : deltas) {
+            int dr, dc;
+            tie(dr, dc) = delta;
+            int rr = r + dr;
+            int cc = c + dc;
+            if (rr < 0 || rr >= R || cc < 0 || cc >= C || grid[r][c] != grid[rr][cc]) {
+                border[grid[r][c]-'a'].emplace_back(r, c);
+                break;
+            }
+        }
+    }
+
+    vvi res(R, vi(C));
+    FOR(z, 0, 26) {
+        vvi dist(R, vi(C));
+        deque<pii> &q = border[z];
+        for (pii pr : q) {
+            int r, c;
+            tie(r, c) = pr;
+            dist[r][c] = 1;
+        }
+        while (!q.empty()) {
+            int r, c;
+            tie(r, c) = q.front();
+            q.pop_front();
+
+            res[r][c] = dist[r][c];
+
+            for (pii delta : deltas) {
+                int dr, dc;
+                tie(dr, dc) = delta;
+                int rr = r + dr;
+                int cc = c + dc;
+                if (0 <= rr && rr < R && 0 <= cc && cc < C && dist[rr][cc] == 0 && grid[rr][cc] == z+'a') {
+                    dist[rr][cc] = dist[r][c] + 1;
+                    q.emplace_back(rr, cc);
+                }
+            }
+        }
+    }
+    int ans = 0;
+    FOR(r, 0, R) FOR(c, 0, C) {
+        ans += res[r][c];
+    }
+    print(ans);
 }
