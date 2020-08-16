@@ -78,9 +78,61 @@ int powa(int base, int exp) {
 }
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
- 
+
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    CASET {
+        int n;
+        cin >> n;
+        vb a(n);
+        FOR(i, 0, n) {
+            char x;
+            cin >> x;
+            a[i] = x == 'R';
+        }
+        
+        if (n <= 2) {
+            print(0);
+            exit(0);
+        }
+        
+        vb has(2);
+        FOR(i, 0, n) {
+            has[a[i]] = true;
+        }
+
+        
+        int res = 0;
+        if (!has[0]) {
+            a.back() = 0;
+            ++res;
+        } else if (!has[1]) {
+            a.back() = 1;
+            ++res;
+        }
+
+        if (a.front() == a.back()) {
+            vb b = a;
+            int k = 0;
+            while (a[k] == a.back()) ++k;
+            a.clear();
+            FOR(i, k, n) {
+                a.push_back(b[i]);
+            }
+            FOR(i, 0, k) {
+                a.push_back(b[i]);
+            }
+        }
+        
+        // print(a);
+        int prev = 0;
+        FOR(i, 1, n+1) {
+            if (i == n || a[i] != a[i-1]) {
+                res += (i - prev) / 3;
+                prev = i;
+            }
+        }
+        print(res);
+    }
 }

@@ -82,5 +82,22 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    CASET {
+        int n, k;
+        cin >> n >> k;
+
+        vi a(n);
+        cin >> a;
+
+        FOR(_, 0, k&1 ? 1 : 2) {
+            int m = *max_element(ALL(a));
+            FOR(i, 0, n) {
+                a[i] = m - a[i];
+            }
+        }
+        FOR(i, 0, n) {
+            cout << a[i] << ' ';
+        }
+        print();
+    }
 }

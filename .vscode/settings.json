@@ -4,6 +4,8 @@
         "*.tcc": "cpp",
         "deque": "cpp",
         "vector": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "array": "cpp",
+        "list": "cpp"
     }
 }

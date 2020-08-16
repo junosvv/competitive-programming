@@ -82,5 +82,40 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
+    int n;
+    cin >> n;
+
+    FOR(r, 0, n) {
+        FOR(c, 0, n) {
+            cout << (r&1 ? 1LL<<r+c-1 : 0) << ' ';
+        }
+        print();
+    }
+
+    cout.flush();
     
+    int Q;
+    cin >> Q;
+
+    FOR(q, 0, Q) {
+        int k;
+        cin >> k;
+
+        int r = 1, c = 1;
+        print(r, c);
+
+        int t = 0;
+        int prev = 0;
+        while (!(r==n && c==n)) {
+            if ((k>>t&1LL) ^ prev) {
+                ++r;
+            } else {
+                ++c;
+            }
+            prev = k>>t&1LL;
+            ++t;
+            print(r, c);
+        }
+        cout.flush();
+    }
 }
