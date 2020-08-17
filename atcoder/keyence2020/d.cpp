@@ -2,63 +2,71 @@
 using namespace std;
  
 #define int long long
-#define REP(i, l, r) for (int i=(l); i<(r); ++i)
-#define RREP(i, r, l) for (int i=(r); i>(l); --i)
-#define CASET int _T; cin >> _T; REP(caset, 0, _T)
-#define print(x) cout << to_string(x) << '\n'
+#define dub long double
+#define FOR(i, a, b) for (int i=(a); i<(b); ++i)
+#define ROF(i, a, b) for (int i=(a); i>(b); --i)
+#define CASET int _T; cin >> _T; FOR(caset, 1, _T+1)
+#define pii pair<int,int>
+#define t3i tuple<int,int,int>
+#define mii map<int,int>
 #define vi vector<int>
 #define vb vector<bool>
 #define vs vector<string>
 #define vvi vector<vi>
 #define vvb vector<vb>
-#define pii pair<int,int>
-#define t3i tuple<int,int,int>
-#define mii map<int,int>
+#define vpii vector<pii>
+#define vt3i vector<t3i>
+#define vvpii vector<vpii>
 #define sq(x) (x)*(x)
 #define inv(x) powa(x, MOD-2)
+#define ALL(x) (x).begin(), (x).end()
+#define RALL(x) (x).rbegin(), (x).rend()
+#define SIZE(x) (signed)(x).size()
+#define SUM(x) accumulate(ALL(x), 0LL)
  
 long long INF = 1LL<<60;
-long long MOD = 998244353;
-
-string to_string(char &c) {string x(1, c); return x;}
-string to_string(const char s[]) {return (string)s;}
-string to_string(string &s) {return s;}
-string to_string(vb &v) {string res; for (const bool &x : v) res += to_string(x) + ' '; return res;}
-template <class C> string to_string(C &v) {string res; for (auto &x : v) res += to_string(x) + ' '; return res;}
-template <typename A, typename B> istream &operator>>(istream &is, pair<A, B> &pr) {is >> pr.first >> pr.second; return is;}
-template <typename A> istream &operator>>(istream &is, vector<A> &v) {for (auto &x : v) is >> x; return is;}
-ostream &operator<<(ostream &os, char &c) {os << (char)c; return os;}
-ostream &operator<<(ostream &os, const char s[]) {os << (string)s; return os;}
-ostream &operator<<(ostream &os, string &s) {for (char &c : s) os << (char)c; return os;}
-template <typename A, typename B> ostream &operator<<(ostream &os, pair<A, B> pr) {os << '(' << pr.first << ", " << pr.second << ')'; return os;}
-ostream &operator<<(ostream &os, vb &v) {
-    bool first = true;
-    os << '[';
-    for (const bool &x : v) {
-        if (!first) os << ", ";
-        first = false;
-        os << x;
+long long MOD = 1e9 + 7;
+ 
+namespace output {
+    void pr(short x) { cout << x; }
+    void pr(signed x) { cout << x; }
+    void pr(long x) { cout << x; }
+    void pr(long long x) { cout << x; }
+    void pr(unsigned short x) { cout << x; }
+    void pr(unsigned x) { cout << x; }
+    void pr(unsigned long x) { cout << x; }
+    void pr(unsigned long long x) { cout << x; }
+    void pr(float x) { cout << x; }
+    void pr(double x) { cout << x; }
+    void pr(long double x) { cout << x; }
+    void pr(char x) { cout << x; }
+    void pr(const char* x) { cout << x; }
+    void pr(const string& x) { cout << x; }
+    void pr(bool x) { cout << x; }
+    template<size_t sz> void pr(const bitset<sz>& x) { cout << x; }
+    template<class T> void pr(const complex<T>& x) { cout << x; }
+    
+    template<class T1, class T2> void pr(const pair<T1,T2>& x);
+    template<class T1, class T2, class T3> void pr(const tuple<T1,T2,T3>& x);
+    template<class T> void pr(const T& x);
+    
+    template<class T, class... Ts> void pr(const T& t, const Ts&... ts) { pr(t); pr(ts...); }
+    template<class T1, class T2> void pr(const pair<T1,T2>& x) { pr("(",x.first,", ",x.second,")"); }
+    template<class T1, class T2, class T3> void pr(const tuple<T1,T2,T3>& x) { pr("(",get<0>(x),", ",get<1>(x),", ",get<2>(x),")"); }
+    template<class T> void pr(const T& x) { 
+        pr("["); // const iterator needed for vector<bool>
+        bool fst = 1; for (const auto& a: x) pr(!fst?", ":"",a), fst = 0; 
+        pr("]");
     }
-    os << ']';
-    return os;
+    
+    void print() { pr("\n"); } // print w/ spaces
+    template<class T, class... Ts> void print(const T& t, const Ts&... ts) { pr(t); if (sizeof...(ts)) pr(" "); print(ts...); }
 }
-template <class C> ostream &operator<<(ostream &os, C &v) {
-    bool first = true;
-    os << '[';
-    for (auto &x : v) {
-        if (!first) os << ", ";
-        first = false;
-        os << x;
-    }
-    os << ']';
-    return os;
-}
-string bin_string(int x) {
-    const int d = 3;
-    string res(d, ' ');
-    REP(i, 0, d) res[d-1-i] = '0'+(x>>i & 1LL);
-    return res;
-}
+using namespace output;
+ 
+template <class T1, class T2> istream &operator>>(istream &is, pair<T1,T2> &x) { is >> x.first >> x.second; return is; }
+template <class T1, class T2, class T3> istream &operator>>(istream &is, tuple<T1,T2,T3> &x) { is >> get<0>(x) >> get<1>(x) >> get<2>(x); return is; }
+template <class T> istream &operator>>(istream &is, vector<T> &v) { for (auto &x : v) is >> x; return is; }
 int powa(int base, int exp) {
     int res = 1;
     while (exp) {
@@ -68,29 +76,50 @@ int powa(int base, int exp) {
     }
     return res;
 }
+bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
+bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 
-main() {
-    ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+// int f(int x, int d) {
+//     int y = 0;
+//     FOR(i, 0, d) {
+//         if (x>>i&1) {
+//             y |= 1<<(d-i-1);
+//         }
+//     }
+//     return y;
+// }
+
+signed main() {
+    ios::sync_with_stdio(0), cin.tie(0);
     
     int n;
     cin >> n;
     vvi a(2, vi(n));
     cin >> a;
-    
+
     vvi dp(1<<n, vi(51, INF));
     dp[0].assign(51, 0);
-    REP(mask, 0, 1<<n) REP(u, 1, 51) {
-        REP(card, 0, n) if (mask>>card&1LL) {
-            int oldmask = mask ^ 1LL<<card;
-            int cardval = a[(__builtin_popcountll(oldmask)+card)%2][card];
-            if (cardval <= u) {
-                int cost = 0;
-                REP(i, 0, card) if (!(mask>>i&1LL)) ++cost;
-                dp[mask][u] = min(dp[mask][u], cost + dp[oldmask][cardval]);
+    FOR(mask, 1, 1<<n) {
+        int cnt = __builtin_popcount(mask) - 1;
+        int cur = 0;
+        FOR(d, 0, n) {
+            if (mask>>d&1) {
+                int prevmask = mask ^ 1<<d;
+                int elt = a[d+cnt&1][d];
+                mini(dp[mask][elt], cur + dp[prevmask][elt]);
+            } else {
+                ++cur;
             }
         }
+        // FOR(i, 0, 51) {
+        //     if (dp[mask][i] != INF) {
+        //         print(pair<bitset<5>, int>{bitset<5>(f(mask, 5)), i}, ":", dp[mask][i]);
+        //     }
+        // }
+        FOR(i, 1, 51) {
+            mini(dp[mask][i], dp[mask][i-1]);
+        }
     }
-    int res = dp[(1<<n)-1][50];
-    if (res==INF) cout << -1;
-    else cout << res;
+    int res = dp.back().back();
+    print(res == INF ? -1 : res);
 }
