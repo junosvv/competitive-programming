@@ -78,9 +78,46 @@ int powa(int base, int exp) {
 }
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
- 
+
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    int n, d, m;
+    cin >> n >> d >> m;
+    vi a(n);
+    cin >> a;
+
+    vi big, small;
+    FOR(i, 0, n) {
+        if (a[i] > m) {
+            big.push_back(a[i]);
+        } else {
+            small.push_back(a[i]);
+        }
+    }
+
+    sort(RALL(big));
+    sort(RALL(small));
+
+    // print("big:", big);
+    // print("small:", small);
+
+    FOR(i, 1, SIZE(big)) {
+        big[i] += big[i-1];
+    }
+    FOR(i, 1, SIZE(small)) {
+        small[i] += small[i-1];
+    }
+
+    int res = small.back();
+    int cntsmall = n-1;
+    FOR(cntbig, 1, SIZE(big)+1) {
+        int cntsmall = min(SIZE(small), n-1 - (cntbig-1) * (d+1));
+        if (cntsmall < 0) {
+            break;
+        }
+        // print("try:", cntbig, cntsmall, "for", (cntbig?big[cntbig-1]:0) + (cntsmall?small[cntsmall-1]:0));
+        maxi(res, (cntbig?big[cntbig-1]:0) + (cntsmall?small[cntsmall-1]:0));
+    }
+    print(res);
 }

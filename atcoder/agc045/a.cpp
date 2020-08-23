@@ -82,5 +82,43 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    CASET {
+        int n;
+        cin >> n;
+        vi a(n);
+        cin >> a;
+        vb b(n);
+        FOR(i, 0, n) {
+            char x;
+            cin >> x;
+            b[i] = x == '1';
+        }
+
+        bool fail = false;
+        FOR(d, 0, 64) {
+            ROF(i, n-1, -1) {
+                if (a[i]>>d&1LL) {
+                    if (b[i]) {
+                        fail = true;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        FOR(d1, 0, 64) {
+            FOR(d2, d1+1, 64) {
+                ROF(i, n-1, -1) {
+                    if (a[i]>>d1&1LL ^ a[i]>>d2&1LL) {
+                        if (b[i]) {
+                            fail = true;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        print(fail);
+    }
 }
