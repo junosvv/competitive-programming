@@ -82,16 +82,26 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    CASET {
-        int n;
-        cin >> n;
-        vi a(n);
-        cin >> a;
-        
-        if (*min_element(ALL(a)) == *max_element(ALL(a))) {
-            print(n);
-        } else {
-            print(1);
-        }
+    int n;
+    cin >> n;
+    vi a(n);
+    cin >> a;
+
+    FOR(i, 0, n) {
+        a[i] -= i;
+    }
+
+    int sum = SUM(a);
+
+    FOR(i, 0, n) {
+        a[i] = sum/n + (i < sum%n);
+    }
+
+    FOR(i, 0, n) {
+        a[i] += i;
+    }
+    
+    FOR(i, 0, n) {
+        cout << a[i] << ' ';
     }
 }
