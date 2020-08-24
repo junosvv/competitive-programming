@@ -78,46 +78,87 @@ int powa(int base, int exp) {
 }
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
-
+ 
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    int n, d, m;
-    cin >> n >> d >> m;
-    vi a(n);
-    cin >> a;
+    const int BIG = 1000;
+    vi sieve(BIG);
+    vi primes;
+    FOR(p, 2, BIG) {
+        if (!sieve[p]) {
+            if (p > 500) {
+                primes.push_back(p);
+            }
+            for (int u=p*p; u<BIG; u+=p) {
+                sieve[u] = p;
+            }
+        }
+    }
 
-    vi big, small;
+    int p = primes[rand() % SIZE(primes)];
+
+    int n, m, k;
+    cin >> n >> m >> k;
+
+    vi tk(n, 1);
+    FOR(i, 1, n) {
+        tk[i] = p * tk[i-1] % MOD;
+    }
+
+    vvpii nodes(n);
+
+    FOR(i, 0, m) {
+        int u, v, w;
+        cin >> u >> v >> w;
+        --u; --v;
+
+        nodes[u].emplace_back(w, v);
+    }
+
+    vvi cons(k, vi(k));
+    FOR(u, 0, n) {
+        sort(ALL(nodes[u]));
+
+        FOR(i, 0, SIZE(nodes[u])) {
+            int w, v;
+            tie(w, v) = nodes[u][i];
+
+            cons[SIZE(nodes[u]) - 1][i] = (cons[SIZE(nodes[u]) - 1][i] + tk[v]) % MOD;
+        }
+    }
+
+    int want = 0;
     FOR(i, 0, n) {
-        if (a[i] > m) {
-            big.push_back(a[i]);
-        } else {
-            small.push_back(a[i]);
+        want = (want + tk[i]) % MOD;
+    }
+    
+    vi perm(k, -1);
+    int res = 0;
+    function<void(int)> f = [&](int upto) {
+        if (upto == k) {
+            int cur = 0;
+            FOR(i, 0, k) {
+                cur = (cur + cons[i][perm[i]]) % MOD;
+            }
+
+            if (cur == want) {
+                ++res;
+                // FOR(i, 0, k) ++perm[i];
+                // print(perm);
+                // FOR(i, 0, k) --perm[i];
+            }
+
+            return;
         }
-    }
 
-    sort(RALL(big));
-    sort(RALL(small));
-
-    // print("big:", big);
-    // print("small:", small);
-
-    FOR(i, 1, SIZE(big)) {
-        big[i] += big[i-1];
-    }
-    FOR(i, 1, SIZE(small)) {
-        small[i] += small[i-1];
-    }
-
-    int res = small.back();
-    int cntsmall = n-1;
-    FOR(cntbig, 1, SIZE(big)+1) {
-        int cntsmall = min(SIZE(small), n-1 - (cntbig-1) * (d+1));
-        if (cntsmall < 0) {
-            break;
+        FOR(i, 0, upto+1) {
+            perm[upto] = i;
+            f(upto+1);
         }
-        // print("try:", cntbig, cntsmall, "for", (cntbig?big[cntbig-1]:0) + (cntsmall?small[cntsmall-1]:0));
-        maxi(res, (cntbig?big[cntbig-1]:0) + (cntsmall?small[cntsmall-1]:0));
-    }
+        perm[upto] = -1;
+    };
+
+    f(0);
     print(res);
 }
