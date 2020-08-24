@@ -96,4 +96,4 @@ main() {
     res &= check();
     if (res) cout << "YES";
     else cout << "NO";
-}
+}

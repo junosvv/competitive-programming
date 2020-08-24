@@ -40,4 +40,4 @@ else:
     if (0 <= k and k <= row):
         print(bc(row, k))
     else:
-        print(0)
+        print(0)

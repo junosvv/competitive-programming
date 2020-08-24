@@ -63,4 +63,4 @@ main() {
         int res2 = n-b+1 + abs(n-(n-b+1+a))/2;
         cout << min(res, res2);
     }
-}
+}

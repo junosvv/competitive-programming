@@ -106,4 +106,4 @@ signed main() {
     res = res * nCr(n, k) % MOD;
     if (k) res = res * 2 % MOD;
     print(res);
-}
+}

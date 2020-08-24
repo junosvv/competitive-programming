@@ -133,4 +133,4 @@ signed main() {
         if (grid[r][c] == 'W') ++res;
     }
     print(res);
-}
+}

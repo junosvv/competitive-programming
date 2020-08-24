@@ -96,4 +96,4 @@ for size in factors:
 
 result += (binToInt(x)+1-defects)*2*n
 result %= MOD
-print(result)
+print(result)

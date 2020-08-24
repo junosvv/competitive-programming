@@ -91,4 +91,4 @@ signed main() {
  
         print(abs(x-y)*a + min(2*min(x,y)*a, min(x,y)*b));
     }
-}
+}

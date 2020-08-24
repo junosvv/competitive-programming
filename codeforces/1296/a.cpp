@@ -81,4 +81,4 @@ main() {
         if (!odd || (!even&& !(n&1))) cout << "NO\n";
         else cout << "YES\n";
     }
-}
+}

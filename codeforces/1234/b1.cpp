@@ -101,4 +101,4 @@ signed main() {
     }
     cout << msgs.size() << '\n';
     for (int i : msgs) cout << i << ' ';
-}
+}

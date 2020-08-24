@@ -89,4 +89,4 @@ signed main() {
     cin >> s >> w;
 
     print(w >= s ? "unsafe" : "safe");
-}
+}

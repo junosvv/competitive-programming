@@ -78,4 +78,4 @@ main() {
     }
     if (a.size() == n) cout << "YES";
     else cout << "NO";
-}
+}

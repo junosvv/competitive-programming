@@ -156,4 +156,4 @@ main() {
         for (int i : seen) dist[i] = par[i] = -1;
     }
     print(res==1e9 ? -1 : res);
-}
+}

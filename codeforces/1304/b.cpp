@@ -92,4 +92,4 @@ main() {
     for (string &s : pals) res += s;
     for (string &s : partB) res += s;
     cout << res.size() << '\n' << res;
-}
+}

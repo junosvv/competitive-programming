@@ -117,4 +117,4 @@ signed main() {
     int res = 0;
     FOR(i, 0, k) res += val[i];
     print(res);
-}
+}

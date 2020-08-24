@@ -4,4 +4,4 @@ n -= 105*res
 if n == 0 or n >= 100:
     print(1)
 else:
-    print(0)
+    print(0)

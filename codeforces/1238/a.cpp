@@ -20,4 +20,4 @@ int main() {
 		lglg x,y; cin >> x >> y;
 		cout << (x-y == 1 ? "NO" : "YES") << '\n';
 	}
-}
+}

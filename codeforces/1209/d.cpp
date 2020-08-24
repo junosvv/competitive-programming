@@ -90,4 +90,4 @@ main() {
         }
     }
     cout << k-total+c;
-}
+}

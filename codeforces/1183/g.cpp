@@ -120,4 +120,4 @@ signed main() {
         }
         cout << res << ' ' << res2 << '\n';
     }
-}
+}

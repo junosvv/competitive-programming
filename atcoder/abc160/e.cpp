@@ -102,4 +102,4 @@ main() {
     sort(RALL(things));
     things.resize(x+y);
     print(accumulate(ALL(things), 0LL));
-}
+}

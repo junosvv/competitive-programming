@@ -52,4 +52,4 @@ int main() {
 		dp[0] = 0;
 		cout << solve((1<<N)-1);
 	}
-}
+}

@@ -109,4 +109,4 @@ main() {
         cur += f(occ[a[i]]-1);
         print(cur);
     }
-}
+}

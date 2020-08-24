@@ -83,4 +83,4 @@ main() {
         if (n >= 15 && 15 <= k && k <= 20) cout << "YES\n";
         else cout << "NO\n";
     }
-}
+}

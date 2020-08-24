@@ -97,4 +97,4 @@ signed main() {
     FOR(i, 0, k) res += a[i];
 
     print(res);
-}
+}

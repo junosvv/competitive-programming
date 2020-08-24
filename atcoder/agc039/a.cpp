@@ -38,4 +38,4 @@ int main() {
 		result += count/2;
 		cout << result;
 	}
-}
+}

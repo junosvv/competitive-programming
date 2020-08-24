@@ -105,4 +105,4 @@ signed main() {
         if (fail) cout << "-1\n";
         else cout << x << '\n';
     }
-}
+}

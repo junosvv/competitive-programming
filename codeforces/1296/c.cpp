@@ -95,4 +95,4 @@ main() {
             cout << get<1>(answers[0]) << ' ' << get<2>(answers[0]) << '\n';
         }
     }
-}
+}

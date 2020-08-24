@@ -89,4 +89,4 @@ main() {
         else res += occ[fxs]++;
     }
     cout << n*(n+1)/2 - res;
-}
+}

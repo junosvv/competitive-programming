@@ -74,4 +74,4 @@ signed main() {
         res += (a-mod)*div*div;
         cout << res << '\n';
     }
-}
+}

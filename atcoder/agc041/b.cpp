@@ -103,4 +103,4 @@ main() {
     int res = 0;
     REP(i, 0, n) if (a[i] >= a[k]) ++res;
     print(res);
-}
+}

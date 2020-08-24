@@ -92,4 +92,4 @@ main() {
         FOR(c, 0, 26) cout << res[c] << ' ';
         cout << '\n';
     }
-}
+}

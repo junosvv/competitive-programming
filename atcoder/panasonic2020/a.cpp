@@ -88,4 +88,4 @@ main() {
     int n;
     cin >> n;
     cout << a[n-1];
-}
+}

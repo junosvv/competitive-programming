@@ -130,4 +130,4 @@ signed main() {
         solve(k/2);
     }
     print(res);
-}
+}

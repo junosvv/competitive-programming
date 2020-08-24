@@ -97,4 +97,4 @@ main() {
     }
     mini(res, *min_element(ALL(fridges)) + *min_element(ALL(microwaves)));
     print(res);
-}
+}

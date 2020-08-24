@@ -53,4 +53,4 @@ int main() {
 		a += (b-a)/2*2;
 		cout << result + b - a << '\n';
 	}
-}
+}

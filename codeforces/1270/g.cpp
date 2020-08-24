@@ -97,4 +97,4 @@ main() {
         REP(i, 1, n+1) if (seen[i]) cout << i << ' ';
         cout << '\n';
     }
-}
+}

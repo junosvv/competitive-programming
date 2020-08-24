@@ -107,4 +107,4 @@ signed main() {
         }
         print(failed ? "NO": "YES");
     }
-}
+}

@@ -132,4 +132,4 @@ signed main() {
         if (balance == 0 && s[1] >= 0) cout << sm[1] << ' ';
         else cout << "-1 ";
     } 
-}
+}

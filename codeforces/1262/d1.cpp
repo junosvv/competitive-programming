@@ -97,4 +97,4 @@ signed main() {
         int k,pos; cin >> k >> pos;
         cout << q[k][pos-1].second << '\n';
     }
-}
+}

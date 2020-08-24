@@ -142,4 +142,4 @@ signed main() {
 
         FOR(i, 0, n) if (!res[i]) print(i+1);
     }
-}
+}

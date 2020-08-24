@@ -131,4 +131,4 @@ main() {
     FOR(i, 0, n+1) cout << top[i] << ' ';
     cout << '\n';
     FOR(i, 0, n+1) cout << bottom[i] << ' ';
-}
+}

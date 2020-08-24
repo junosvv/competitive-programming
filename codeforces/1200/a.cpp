@@ -100,4 +100,4 @@ signed main() {
         }
     }
     cout << room;
-}
+}

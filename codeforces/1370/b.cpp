@@ -105,4 +105,4 @@ signed main() {
             if (loops >= n/2 - 1) break;
         }
     }
-}
+}

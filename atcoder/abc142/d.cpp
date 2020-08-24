@@ -19,4 +19,4 @@ int main() {
 	}
 	if (gcd > 1) ++result;
 	cout << result;
-}
+}

@@ -34,4 +34,4 @@ int main() {
 	}
 
 	cout << min(prev[1], min(prev[2], prev[3]));
-}
+}

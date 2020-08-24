@@ -114,4 +114,4 @@ signed main() {
     }
     
     print(SIZE(a) - 1);
-}
+}

@@ -5,4 +5,4 @@ if int(a*1.08)==n:
 elif int((a+1)*1.08) == n:
     print(a+1)
 else:
-    print(":(")
+    print(":(")

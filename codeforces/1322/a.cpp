@@ -86,4 +86,4 @@ signed main() {
         FOR(i, 0, n) if (pref[i] < 0) ++res;
         cout << res << '\n';
     }
-}
+}

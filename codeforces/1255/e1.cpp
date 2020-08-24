@@ -75,4 +75,4 @@ int main() {
 		if (k > 1) check(k);
 		cout << best;
 	}
-}
+}

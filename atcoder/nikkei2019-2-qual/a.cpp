@@ -19,4 +19,4 @@ int main() {
     cin >> N;
     
     cout << (N-1)/2;
-}
+}

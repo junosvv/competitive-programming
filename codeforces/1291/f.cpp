@@ -85,4 +85,4 @@ main() {
         }
     }
     cout << "! " << accumulate(alive.begin(), alive.end(), 0LL);
-}
+}

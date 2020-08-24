@@ -112,4 +112,4 @@ signed main() {
     FOR(i, 0, Q) cin >> a[i] >> b[i] >> c[i] >> d[i];
     dfs();
     print(res);
-}
+}

@@ -114,4 +114,4 @@ main() {
         FOR(i, 0, 26) if (!used[i]) cout << (char)(i+'a');
         cout << '\n';
     }
-}
+}

@@ -53,4 +53,4 @@ int main() {
             for (int i=0; i<moves; ++i) cout << outA[i] << " " << outB[i] << '\n';
         }
     }
-}
+}

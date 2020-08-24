@@ -98,4 +98,4 @@ main() {
     string s2 = s.substr(n/2+1);
 
     print(isp(s)&&isp(s1)&&isp(s2)?"Yes":"No");
-}
+}

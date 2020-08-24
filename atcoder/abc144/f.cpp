@@ -43,4 +43,4 @@ int main() {
 		if (dp[1][i] != -1 && (best == -1 || dp[1][i] < best)) best = dp[1][i];
 	}
 	cout << setprecision(12) << best;
-}
+}

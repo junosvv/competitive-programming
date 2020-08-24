@@ -104,4 +104,4 @@ main() {
         }
         cout << max(k, bound) << ' ' << L << '\n';
     }
-}
+}

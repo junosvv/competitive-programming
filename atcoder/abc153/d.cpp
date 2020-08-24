@@ -85,4 +85,4 @@ main() {
     REP(i, 0, k) res *= 2;
     res -= 1;
     print(res);
-}
+}

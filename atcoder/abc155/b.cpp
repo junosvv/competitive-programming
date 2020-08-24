@@ -71,4 +71,4 @@ main() {
         exit(0);
     }
     cout << "APPROVED";
-}
+}

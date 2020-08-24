@@ -102,4 +102,4 @@ signed main() {
         }
         cout << res << '\n';
     }
-}
+}

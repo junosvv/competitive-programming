@@ -66,4 +66,4 @@ main() {
         else if (lft > b) lft = rgt;
         cout << (b-a) - (rgt-lft) << '\n';
     }
-}
+}

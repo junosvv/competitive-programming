@@ -72,4 +72,4 @@ main() {
         }
         if (!done) cout << "NO\n";
     }
-}
+}

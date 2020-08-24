@@ -87,4 +87,4 @@ main() {
     int n;
     cin >> n;
     cout << setprecision(20) << n*n*n/27.0;
-}
+}

@@ -75,4 +75,4 @@ main() {
         if (strs.count(u)) ++res;
     }
     cout << res/6;
-}
+}

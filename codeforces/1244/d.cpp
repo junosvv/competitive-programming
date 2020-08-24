@@ -101,4 +101,4 @@ main() {
     }
     cout << bestval << '\n';
     REP(i, 0, n) cout << 1+colour[best][i] << ' ';
-}
+}

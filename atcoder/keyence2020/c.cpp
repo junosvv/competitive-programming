@@ -82,4 +82,4 @@ main() {
         REP(i, 0, s+k-1) res[i] = 1;
     }
     print(res);
-}
+}

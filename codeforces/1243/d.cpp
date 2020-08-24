@@ -52,4 +52,4 @@ int main() {
     int comps = 0;
     for (int x=1; x<=V; ++x) if (x == find(x)) ++comps;
     cout << comps-1;
-}
+}

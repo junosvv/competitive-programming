@@ -40,4 +40,4 @@ int main() {
     }
     cout << dp[n-1].first << " " << teamCount << '\n';
     for (int i=0; i<n; ++i) cout << teams[i] << " ";
-}
+}

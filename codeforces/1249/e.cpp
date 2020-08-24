@@ -97,4 +97,4 @@ signed main() {
         dp.second[floor] = lift[floor] + min(dp.first[floor-1] + c, dp.second[floor-1]);
         cout << min(dp.first[floor], dp.second[floor]) << ' ';
     }
-}
+}

@@ -93,4 +93,4 @@ signed main() {
         occ[b[i]].push_back(i);
     }
     cout << res;
-}
+}

@@ -37,4 +37,4 @@ int main() {
 
     int val = search(N, T-1, 1);
     cout << val;
-}
+}

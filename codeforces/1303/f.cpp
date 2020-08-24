@@ -153,4 +153,4 @@ main() {
     ++res[0];
     FOR(i, 1, Q) res[i] += res[i-1];
     FOR(i, 0, Q) cout << res[i] << '\n';
-}
+}

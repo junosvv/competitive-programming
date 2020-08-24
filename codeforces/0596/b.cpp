@@ -97,4 +97,4 @@ signed main() {
         suff = a[i];
     }
     print(res);
-}
+}

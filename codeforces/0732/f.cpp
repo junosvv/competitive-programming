@@ -150,4 +150,4 @@ signed main() {
 
     print(compsize[big]);
     for (pii pr : res) print(pr.first+1, pr.second+1);
-}
+}

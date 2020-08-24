@@ -132,4 +132,4 @@ signed main() {
         }
         print(res, blackres);
     }
-}
+}

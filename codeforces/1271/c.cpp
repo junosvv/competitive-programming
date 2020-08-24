@@ -99,4 +99,4 @@ main() {
         }
     }
     cout << optVal << '\n' << optX << ' ' << optY << '\n';
-}
+}

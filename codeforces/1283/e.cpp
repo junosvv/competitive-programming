@@ -86,4 +86,4 @@ main() {
     seen.clear();
     REP(i, 0, n) seen.insert(b[i]);
     cout << seen.size() << ' ';
-}
+}

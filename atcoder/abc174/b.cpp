@@ -81,21 +81,21 @@ int powa(int base, int exp) {
 }
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
- 
+
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
     int n, d;
     cin >> n >> d;
- 
+
     int res = 0;
     FOR(i, 0, n) {
         int a, b;
         cin >> a >> b;
- 
+
         if (a*a + b*b <= d*d) {
             ++res;
         }
     }
     print(res);
-}
+}

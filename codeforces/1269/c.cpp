@@ -75,4 +75,4 @@ main() {
         }
         REP(i, 0, n) cout << p[i%k];
     }
-}
+}

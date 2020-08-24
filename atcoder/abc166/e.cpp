@@ -101,4 +101,4 @@ signed main() {
         res += occ[b[i]];
     }
     print(res);
-}
+}

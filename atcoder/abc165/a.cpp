@@ -93,4 +93,4 @@ signed main() {
     } else {
         print("NG");
     }
-}
+}

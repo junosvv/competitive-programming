@@ -88,4 +88,4 @@ signed main() {
         FOR(i, 0, n) cout << i+1 << ' ';
         print();
     }
-}
+}

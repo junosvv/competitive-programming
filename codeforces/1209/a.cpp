@@ -70,4 +70,4 @@ main() {
         ++res;
     }
     cout << res;
-}
+}

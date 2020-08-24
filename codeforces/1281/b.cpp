@@ -89,4 +89,4 @@ main() {
         if (s < t) cout << s << '\n';
         else cout << "---\n";
     }
-}
+}

@@ -84,4 +84,4 @@ signed main() {
         else REP(i,n) cout << res[i] << " ";
         cout << '\n';
     }
-}
+}

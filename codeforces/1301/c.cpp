@@ -77,4 +77,4 @@ main() {
         int res = numlower * f(lower) + numupper * f(lower + 1);
         cout << f(n) - res << '\n';
     }
-}
+}

@@ -82,64 +82,69 @@ int powa(int base, int exp) {
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 
-const int B = 700;
-
-bool cmp(t3i a, t3i b) {
-    int aa = get<0>(a)/B;
-    int bb = get<0>(b)/B;
-    if (aa < bb) return true;
-    if (aa > bb) return false;
-    return get<1>(a) < get<1>(b);
-}
-
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    int n, q;
-    cin >> n >> q;
+    int n, Q;
+    cin >> n >> Q;
 
     vi a(n);
     cin >> a;
-    a.insert(a.begin(), 0);
 
-    vt3i queries(q);
-    FOR(i, 0, q) {
-        int x, y;
-        cin >> x >> y;
-        queries[i] = {x, y, i};
+    vt3i queries(Q);
+    FOR(q, 0, Q) {
+        int a, b;
+        cin >> a >> b;
+        --a; --b;
+        queries[q] = {a, b, q};
     }
 
-    sort(ALL(queries), cmp);
+    sort(ALL(queries), [&](t3i a, t3i b) {
+        return get<1>(a) < get<1>(b);
+    });
 
-    int L = 0;
-    int R = 0;
-    vi occ(n+1);
-    vi res(q);
-    int cur = 0;
-    for (t3i tup : queries) {
-        int newL, newR, id;
-        tie(newL, newR, id) = tup;
-        while (L > newL) {
-            --L;
-            ++occ[a[L]];
-            if (occ[a[L]] == 1) ++cur;
+    vi tree(2*n);
+
+    auto upd = [&](int x, int val) {
+        x += n;
+        tree[x] = val;
+        x /= 2;
+        while (x) {
+            tree[x] = tree[2*x] + tree[2*x+1];
+            x /= 2;
         }
-        while (R < newR) {
-            ++R;
-            ++occ[a[R]];
-            if (occ[a[R]] == 1) ++cur;
+    };
+
+    auto query = [&](int l, int r) {
+        int res = 0;
+        l += n;
+        r += n;
+        while (l <= r) {
+            if (l&1) res += tree[l++];
+            if (!(r&1)) res += tree[r--];
+            l /= 2;
+            r /= 2;
         }
-        while (L < newL) {
-            --occ[a[L]];
-            if (occ[a[L]] == 0) --cur;
-            ++L;
+        return res;
+    };
+
+    vi res(Q);
+    vi lastocc(n+1, -1);
+    int curR = -1;
+    for (t3i que : queries) {
+        int l, r, q;
+        tie(l, r, q) = que;
+
+        while (curR < r) {
+            ++curR;
+            if (lastocc[a[curR]] != -1) {
+                upd(lastocc[a[curR]], 0);
+            }
+            upd(curR, 1);
+            lastocc[a[curR]] = curR;
         }
-        while (R > newR) {
-            --occ[a[R]];
-            if (occ[a[R]] == 0) --cur;
-            --R;
-        }
-        res[id] = cur;
+
+        res[q] = query(l, r);
     }
     for (int i : res) print(i);
-}
+}

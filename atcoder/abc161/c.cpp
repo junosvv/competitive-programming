@@ -89,4 +89,4 @@ signed main() {
 
     int x = n%k;
     print(min(x, k-x));
-}
+}

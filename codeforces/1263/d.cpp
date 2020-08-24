@@ -89,4 +89,4 @@ signed main() {
     set<int> res;
     REP(i, 0, 26) if (seen[i]) res.insert(find(i));
     cout << res.size();
-}
+}

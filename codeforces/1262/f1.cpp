@@ -106,4 +106,4 @@ signed main() {
         result %= MOD;
         cout << result;
     }
-}
+}

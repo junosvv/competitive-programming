@@ -102,4 +102,4 @@ signed main() {
     if (l <= r) res += s[l];
     res += rev;
     print(res);
-}
+}

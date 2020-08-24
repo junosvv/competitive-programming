@@ -55,4 +55,4 @@ main() {
     string s;
     cin >> n >> s;
     println(n+1);
-}
+}

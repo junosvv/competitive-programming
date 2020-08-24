@@ -118,4 +118,4 @@ signed main() {
     }
     if (res.size() < k) cout << -1 << '\n';
     else cout << numres << '\n';
-}
+}

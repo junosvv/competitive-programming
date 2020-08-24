@@ -10,4 +10,4 @@ for i in range(1,10):
         break
 
 if s==0:
-    print("No")
+    print("No")

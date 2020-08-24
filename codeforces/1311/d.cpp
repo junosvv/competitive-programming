@@ -98,4 +98,4 @@ main() {
         cout << res << '\n' << resA << ' ' << resB << ' ' << resC << '\n';
     }
     // cout << "done" << endl;
-}
+}

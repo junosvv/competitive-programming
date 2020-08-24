@@ -102,4 +102,4 @@ main() {
         }
         print(SUM(a)?"NO":"YES"); 
     }
-}
+}

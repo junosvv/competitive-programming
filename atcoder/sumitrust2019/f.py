@@ -20,4 +20,4 @@ else:
     res += 2*int(abs(first)/net)
     if first%net == 0:
         res -= 1
-    print(res)
+    print(res)

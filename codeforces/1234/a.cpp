@@ -95,4 +95,4 @@ signed main() {
         }
         cout << (sum+n-1)/n << '\n';
     }
-}
+}

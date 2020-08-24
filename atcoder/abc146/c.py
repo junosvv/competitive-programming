@@ -12,4 +12,4 @@ for d in range(1, 10):
 big = int("1"+"0"*9)
 if big*a+10*b <= x:
     best = big
-print(best)
+print(best)

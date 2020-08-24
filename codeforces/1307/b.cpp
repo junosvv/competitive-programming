@@ -79,4 +79,4 @@ main() {
 
 		cout << max(2LL, (x+mx-1) / mx) << '\n';
 	}
-}
+}

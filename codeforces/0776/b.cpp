@@ -71,4 +71,4 @@ main() {
 
     cout << (n >= 5 ? 2 : 1) << '\n';
     FOR(i, 2, n) cout << sieve[i]+1 << ' ';
-}
+}

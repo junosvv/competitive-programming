@@ -110,4 +110,4 @@ signed main() {
     }
     res.resize(m);
     FOR(i, 0, m) print(res[i].first, res[i].second);
-}
+}

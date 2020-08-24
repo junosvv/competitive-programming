@@ -146,4 +146,4 @@ main() {
     res.push_back({R-1, "L"});
     done += R-1;
     check();
-}
+}

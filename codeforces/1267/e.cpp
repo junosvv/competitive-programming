@@ -78,4 +78,4 @@ main() {
     }
     cout << best.size() << '\n';
     for (int k : best) cout << k+1 << ' ';
-}
+}

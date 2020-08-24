@@ -81,4 +81,4 @@ main() {
     int sm = accumulate(a.begin(), a.end(), 0LL);
     if (k <= sm) print("Yes");
     else print("No");
-}
+}

@@ -108,4 +108,4 @@ signed main() {
         int x = lower_bound(ALL(thing), i)-thing.begin();
         cout << x << ' ';
     }
-}
+}

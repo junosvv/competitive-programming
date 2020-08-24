@@ -121,4 +121,4 @@ main() {
         }
         cout << aCnt*bCnt << '\n';
     }
-}
+}

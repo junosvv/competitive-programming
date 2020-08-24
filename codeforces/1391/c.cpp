@@ -89,4 +89,4 @@ signed main() {
     FOR(i, 1, n+1) a = a * i % MOD;
     FOR(i, 0, n-1) b = b * 2 % MOD;
     print((a + MOD - b) % MOD);
-}
+}

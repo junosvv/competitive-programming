@@ -50,4 +50,4 @@ int main() {
 		}
 		cout << result << '\n';
     }
-}
+}

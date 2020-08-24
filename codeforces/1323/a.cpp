@@ -95,4 +95,4 @@ signed main() {
             cout << odds[0]+1 << ' ' << odds[1]+1 << '\n';
         }
     }
-}
+}

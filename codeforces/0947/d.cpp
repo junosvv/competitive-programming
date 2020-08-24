@@ -130,4 +130,4 @@ signed main() {
             else cout << 1;
         }
     }
-}
+}

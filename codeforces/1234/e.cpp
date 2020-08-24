@@ -99,4 +99,4 @@ signed main() {
         for (int other : nodes[swp+1]) if (other != swp && other != swp+1) res += other<swp ? other+other-swp : swp;
         cout << res << '\n';
     }
-}
+}

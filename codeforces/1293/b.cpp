@@ -81,4 +81,4 @@ main() {
         res += (long double)(1.0)/(long double)i;
     }
     cout << fixed << setprecision(20) << res;
-}
+}

@@ -63,4 +63,4 @@ main() {
         if (a[0] > a[1]+a[2]+1) cout << "No\n";
         else cout << "Yes\n";
     }
-}
+}

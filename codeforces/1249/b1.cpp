@@ -108,4 +108,4 @@ signed main() {
         REP(i, 1, n+1) cout << res[i] << ' ';
         cout << '\n';
     }
-}
+}

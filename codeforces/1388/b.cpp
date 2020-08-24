@@ -91,4 +91,4 @@ signed main() {
         reverse(ALL(s));
         print(s);
     }
-}
+}

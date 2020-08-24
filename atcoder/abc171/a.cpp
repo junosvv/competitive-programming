@@ -90,4 +90,4 @@ signed main() {
 
     if (x >= 'A' && x <= 'Z') cout << 'A';
     else cout << 'a';
-}
+}

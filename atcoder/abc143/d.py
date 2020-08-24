@@ -17,4 +17,4 @@ for a in range(N):
         else:
             result += memo[aa+bb]-b-1
 
-print(result)
+print(result)

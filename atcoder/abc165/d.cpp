@@ -91,4 +91,4 @@ signed main() {
     int x = min(n, b-1);
 
     print(a*x / b - a * (x/b));
-}
+}

@@ -130,4 +130,4 @@ main() {
         REP(j, 0, w) cout << res[i][j] << ' ';
         cout << '\n';
     }
-}
+}

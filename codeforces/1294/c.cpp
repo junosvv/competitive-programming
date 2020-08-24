@@ -123,4 +123,4 @@ main() {
             cout << pr1.first << ' ' << pr2.first << ' ' << n0/pr1.first/pr2.first << '\n';
         }
     }
-}
+}

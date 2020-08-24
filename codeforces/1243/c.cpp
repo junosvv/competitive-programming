@@ -19,4 +19,4 @@ int main() {
     while (x < n) x *= p;
     if (x == n) cout << p;
     else cout << 1;
-}
+}

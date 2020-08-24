@@ -108,4 +108,4 @@ signed main() {
         occ[b] = 0;
         print(res);
     }
-}
+}

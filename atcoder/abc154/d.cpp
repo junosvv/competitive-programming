@@ -87,4 +87,4 @@ main() {
         res = max(res, cur);
     }
     cout << fixed << setprecision(20) << res << '\n';
-}
+}

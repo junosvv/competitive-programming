@@ -72,4 +72,4 @@ int main() {
 			for (int i=0; i<outA.size(); ++i) cout << outA[i]+1 << " " << outB[i]+1 << '\n';
 		}
 	}
-}
+}

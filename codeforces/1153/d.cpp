@@ -82,4 +82,4 @@ main() {
     int lvs = 0;
     REP(i, 0, n) if (nodes[i].empty()) ++lvs;
     println(lvs-dfs(0));
-}
+}

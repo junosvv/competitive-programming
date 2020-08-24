@@ -97,4 +97,4 @@ main() {
     }
 
     FOR(i, 1, n) print(dists[i]);
-}
+}

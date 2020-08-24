@@ -78,4 +78,4 @@ main() {
         else if (s[n]=='o') cout << "FILIPINO\n";
         else cout << "KOREAN\n";
     }
-}
+}

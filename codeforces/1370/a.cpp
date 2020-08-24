@@ -90,4 +90,4 @@ signed main() {
         cin >> n;
         print(n/2);
     }
-}
+}

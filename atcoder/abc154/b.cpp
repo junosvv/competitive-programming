@@ -72,4 +72,4 @@ main() {
     cin >> s;
     FOR(i, 0, s.size()) s[i] = 'x';
     cout << s;
-}
+}

@@ -89,4 +89,4 @@ main() {
         cin >> a >> b;
         print((a%b==0)?"YES":"NO");
     }
-}
+}

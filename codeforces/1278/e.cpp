@@ -96,4 +96,4 @@ main() {
     res[0].first = 1;
     dfs(0);
     for (auto pr : res) cout << pr.first << ' ' << pr.second << '\n';
-}
+}

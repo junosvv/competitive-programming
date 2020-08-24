@@ -87,4 +87,4 @@ main() {
         }
         if (failed) cout << "NO\n";
     }
-}
+}

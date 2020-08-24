@@ -86,4 +86,4 @@ main() {
             best = min(best, val);
         }
     }
-}
+}

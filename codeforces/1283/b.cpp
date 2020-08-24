@@ -64,4 +64,4 @@ main() {
         int x=n/k;
         cout << min(n, n/k*k+k/2) << '\n';
     }
-}
+}

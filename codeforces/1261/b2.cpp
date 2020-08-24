@@ -120,4 +120,4 @@ signed main() {
         // cout << k << " " << pos << ": " << to_string(tree, n<<1) << " " << res[ind] << '\n';
     }
     REP(i, 0, m) cout << res[i] << '\n';
-}
+}

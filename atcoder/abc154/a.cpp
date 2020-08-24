@@ -76,4 +76,4 @@ main() {
     trans[t] = b;
     --trans[u];
     cout << trans[s] << ' ' << trans[t];
-}
+}

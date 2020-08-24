@@ -113,4 +113,4 @@ signed main() {
         if (bronze > gold) cout << gold << " " << silver << " " << bronze << '\n';
         else cout << "0 0 0\n";
     }
-}
+}

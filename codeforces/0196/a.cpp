@@ -84,4 +84,4 @@ main() {
         if (s[i] == suff[i]) t += s[i];
     }
     print(t);
-}
+}

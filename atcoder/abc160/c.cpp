@@ -93,4 +93,4 @@ main() {
     int mx = k - a.back() + a.front();
     FOR(i, 1, n) maxi(mx, a[i] - a[i-1]);
     print(k-mx);
-}
+}

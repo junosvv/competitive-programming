@@ -74,4 +74,4 @@ main() {
         if (mx1>mx2) cout << "YES\n";
         else cout << "NO\n";
     }
-}
+}

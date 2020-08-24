@@ -97,4 +97,4 @@ main() {
         if (occ[0] && occ[1]) print("NO");
         else print("YES");
     }
-}
+}

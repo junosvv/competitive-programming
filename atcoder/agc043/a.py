@@ -21,4 +21,4 @@ for r in range(H):
             # c-1 can be indexed
             dp[r][c] = min(dp[r][c], dp[r][c-1] + (black[r][c] and not black[r][c-1]))
 
-print(dp[H-1][W-1])
+print(dp[H-1][W-1])

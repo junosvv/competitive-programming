@@ -76,4 +76,4 @@ main() {
     cin >> h >> w >> n;
     if (h>w) swap(w, h);
     print((n+w-1)/w);
-}
+}

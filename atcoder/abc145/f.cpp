@@ -83,4 +83,4 @@ signed main() {
         if (i <= k) dp[i][i] = h[i];
     }
     cout << dp[n][k];
-}
+}

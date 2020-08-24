@@ -124,4 +124,4 @@ main() {
     }
     reverse(res.begin(), res.end());
     for (int i : res) cout << raw[b[i]] << ' ';
-}
+}

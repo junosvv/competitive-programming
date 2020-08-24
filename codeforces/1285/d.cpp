@@ -72,4 +72,4 @@ main() {
     sort(a.begin(), a.end());
  
     cout << solve(0, n-1, 40);
-}
+}

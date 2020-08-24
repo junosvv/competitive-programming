@@ -82,22 +82,32 @@ int powa(int base, int exp) {
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 
+const int B = 700;
+
+bool cmp(t3i a, t3i b) {
+    int aa = get<0>(a)/B;
+    int bb = get<0>(b)/B;
+    if (aa < bb) return true;
+    if (aa > bb) return false;
+    return get<1>(a) < get<1>(b);
+}
+
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
     int n;
     cin >> n;
+
     if (n%2 == 0 || n%5 == 0) {
         print(-1);
         exit(0);
     }
+    
     int res = 1;
-    int num = 7 % n;
-    int tk = 7;
-    while (num) {
-        tk = tk * 10 % n;
-        num = (num + tk) % n;
+    int k = 7 % n;
+    while (k) {
+        k = (10*k + 7) % n;
         ++res;
     }
     print(res);
-}
+}

@@ -109,4 +109,4 @@ main() {
         if (negs.empty() && poss.empty() && cols.empty()) print("Yes");
         else print("No");
     }
-}
+}

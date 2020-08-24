@@ -61,4 +61,4 @@ signed main() {
         }
         cout << max(0LL,maxl-minr) << '\n';
     }
-}
+}

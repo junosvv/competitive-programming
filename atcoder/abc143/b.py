@@ -6,4 +6,4 @@ for a in range(N):
     for b in range(a+1, N):
         result += arr[a]*arr[b]
 
-print(result)
+print(result)

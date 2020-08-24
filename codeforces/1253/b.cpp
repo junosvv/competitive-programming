@@ -45,4 +45,4 @@ int main() {
 		cout << result.size() << '\n';
 		for (int i : result) cout << i << ' ';
 	} else cout << -1;
-}
+}

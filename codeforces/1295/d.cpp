@@ -89,4 +89,4 @@ main() {
         int g = __gcd(a, m);
         cout << phi(m/g) << '\n';
     }
-}
+}

@@ -8,4 +8,4 @@ tr = {
   "MON": 6,
   "SUN": 7
 }
-print(tr[s])
+print(tr[s])

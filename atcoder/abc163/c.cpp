@@ -95,4 +95,4 @@ signed main() {
 		++res[x];
 	}
 	FOR(i, 1, n+1) print(res[i]);
-}
+}

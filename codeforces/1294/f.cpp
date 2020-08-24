@@ -119,4 +119,4 @@ main() {
     res += dist[c];
     print(res);
     cout << a+1 << ' ' << b+1 << ' ' << c+1 << '\n';
-}
+}

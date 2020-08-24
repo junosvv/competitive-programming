@@ -91,4 +91,4 @@ signed main() {
     if (s[1] == 'B') s[1] = 'R';
     else s[1] = 'B';
     print(s);
-}
+}

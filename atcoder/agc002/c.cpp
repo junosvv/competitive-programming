@@ -98,4 +98,4 @@ signed main() {
         }
     }
     print("Impossible");
-}
+}

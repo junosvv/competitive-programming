@@ -131,4 +131,4 @@ signed main() {
  
         print(fail ? "NO" : "YES");
     }
-}
+}

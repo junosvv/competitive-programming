@@ -75,4 +75,4 @@ main() {
         if (accumulate(a.begin(), a.end(), 0LL) == 0) ++res;
         cout << res << '\n';
     }
-}
+}

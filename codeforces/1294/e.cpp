@@ -98,4 +98,4 @@ main() {
         res += cur;
     }
     print(res);
-}
+}

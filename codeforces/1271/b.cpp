@@ -104,4 +104,4 @@ main() {
         cout << res.size() << '\n';
         for (int i : res) cout << i+1 << ' ';
     }
-}
+}

@@ -72,4 +72,4 @@ main() {
         int wait = cyc*(g+b) + then;
         cout << max(n, wait) << '\n';
     }
-}
+}

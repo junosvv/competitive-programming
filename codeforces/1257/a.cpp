@@ -20,4 +20,4 @@ int main() {
 		int n,x,a,b; cin >> n >> x >> a >> b;
 		cout << min(n-1, x+abs(b-a)) << '\n';
 	}
-}
+}

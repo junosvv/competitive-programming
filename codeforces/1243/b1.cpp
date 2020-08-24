@@ -29,4 +29,4 @@ int main() {
         if (fail) cout << "No\n";
         else cout << "Yes\n";
     }
-}
+}

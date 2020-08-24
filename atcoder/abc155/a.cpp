@@ -67,4 +67,4 @@ main() {
     sort(a.begin(), a.end());
     if ((a[0] == a[1] && a[1] != a[2]) || (a[0] != a[1] && a[1] == a[2])) cout << "Yes";
     else cout << "No";
-}
+}

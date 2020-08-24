@@ -135,4 +135,4 @@ main() {
     }
 
     REP(i, 0, n) cout << mins[i]+1 << ' ' << maxs[i]+1 << '\n';
-}
+}

@@ -96,4 +96,4 @@ main() {
         if (minres <= n) cout << "YES\n";
         else cout << "NO\n";
     }
-}
+}

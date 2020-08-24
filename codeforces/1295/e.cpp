@@ -113,4 +113,4 @@ main() {
         res = min(res, osum+pref[1]);
     }
     cout << res;
-}
+}

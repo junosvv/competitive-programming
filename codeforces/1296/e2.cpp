@@ -104,4 +104,4 @@ main() {
     }
     cout << *max_element(res.begin(), res.end()) << '\n';
     REP(i, 0, n) cout << res[i] << ' ';
-}
+}

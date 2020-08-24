@@ -80,4 +80,4 @@ main() {
 		res = max(res, cur);
 	}
 	cout << res;
-}
+}

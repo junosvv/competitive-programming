@@ -40,4 +40,4 @@ int main() {
 		if (newadj[s][t] == INF) cout << "-1\n";
 		else cout << newadj[s][t]-1 << '\n';
 	}
-}
+}

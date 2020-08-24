@@ -70,4 +70,4 @@ main() {
         if (yasser > adel) println("YES");
         else println("NO");
     }
-}
+}

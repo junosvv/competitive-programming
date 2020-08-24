@@ -105,4 +105,4 @@ signed main() {
         if (sec(a, b) == sec(c, d)) cout << "YES\n";
         else cout << "NO\n";
     }
-}
+}

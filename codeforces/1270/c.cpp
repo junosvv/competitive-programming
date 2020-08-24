@@ -77,4 +77,4 @@ main() {
         REP(i, 0, 3) cout << res[i] << ' ';
         cout << '\n';
     }
-}
+}

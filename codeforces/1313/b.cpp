@@ -74,4 +74,4 @@ main() {
 
         cout << max(1LL, min(n, a+b-n+1)) << ' ' << min(n, a+b-1) << '\n';
     }
-}
+}

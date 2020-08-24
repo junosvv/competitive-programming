@@ -127,4 +127,4 @@ signed main() {
     }
     
     FOR(i, 0, m) print(edges[i].first+1, edges[i].second+1);
-}
+}

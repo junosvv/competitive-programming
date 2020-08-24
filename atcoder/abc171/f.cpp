@@ -110,4 +110,4 @@ signed main() {
         res = (res + cur) % MOD;
     }
     print(res);
-}
+}

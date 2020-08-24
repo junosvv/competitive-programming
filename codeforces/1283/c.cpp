@@ -88,4 +88,4 @@ main() {
         if (frst!=-1) a[frst] = thestart;
     }
     REP(i, 1, n+1) cout << a[i] << ' ';
-}
+}

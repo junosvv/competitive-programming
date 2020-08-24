@@ -55,4 +55,4 @@ int main() {
         if (inv%2 == 0) cout << "YES\n";
         else cout << "NO\n";
     }
-}
+}

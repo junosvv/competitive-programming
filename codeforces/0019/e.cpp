@@ -166,4 +166,4 @@ signed main() {
         print(m);
         FOR(i, 0, m) cout << i+1 << ' ';
     }
-}
+}

@@ -159,4 +159,4 @@ main() {
     REP(i, n, n+m) if (!active[i]) ++f;
     cout << k << ' ' << f << '\n';
     REP(i, 0, n) if (active[i]) cout << i+1 << ' ';
-}
+}

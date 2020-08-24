@@ -42,4 +42,4 @@ int main() {
 		if (failed) cout << "NO\n";
 		else cout << "YES\n";
 	}
-}
+}

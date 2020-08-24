@@ -90,4 +90,4 @@ main() {
     int val = sizes[m/2]+1;
     if (val<3) cout << 0;
     else cout << val;
-}
+}

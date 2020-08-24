@@ -121,4 +121,4 @@ main() {
         check(cur, occ01[j-1]+1, occ01[j]);
     }
     cout << res << '\n' << ansA+1 << ' ' << ansB+1;
-}
+}

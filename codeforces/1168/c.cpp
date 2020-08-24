@@ -111,4 +111,4 @@ main() {
         }
         cout << (failed ? "Fou" : "Shi") << '\n';
     }
-}
+}

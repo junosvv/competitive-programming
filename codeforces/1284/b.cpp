@@ -81,4 +81,4 @@ main() {
         res += k+1;
     }
     cout << n*n-res;
-}
+}

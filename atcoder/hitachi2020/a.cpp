@@ -97,4 +97,4 @@ main() {
         if (s == t) print("Yes");
         else print("No");
     }
-}
+}

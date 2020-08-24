@@ -130,4 +130,4 @@ signed main() {
         x = r;
     }
     print(string(x, 'B') + string(y, 'N'));
-}
+}

@@ -46,4 +46,4 @@ int main() {
 	search();
 	for (int i=2; i<=n; ++i) result /= i;
 	cout << setprecision(12) << result;
-}
+}

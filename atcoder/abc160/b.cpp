@@ -91,4 +91,4 @@ main() {
     int res = a * 1000;
     n -= a*500;
     print(res + n/5*5);
-}
+}

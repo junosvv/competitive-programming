@@ -133,4 +133,4 @@ main() {
         if (a[i]%2==0) cout << toOdd[i] << ' ';
         else cout << toEven[i] << ' ';
     }
-}
+}

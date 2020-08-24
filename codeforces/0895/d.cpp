@@ -111,4 +111,4 @@ main() {
     cnt = cnt0;
     res = (res-solve(a)-1+MOD+MOD) % MOD;
     print(res);
-}
+}

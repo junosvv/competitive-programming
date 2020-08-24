@@ -87,4 +87,4 @@ main() {
         res = (res + (nCk(rr+c2+1, rr+1) - nCk(rr+c1, rr+1) + 3*MOD) % MOD) % MOD;
     }
     cout << res;
-}
+}

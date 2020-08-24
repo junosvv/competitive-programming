@@ -147,4 +147,4 @@ signed main() {
         for (int j : res[i]) cout << j+1 << ' ';
         cout << '\n';
     }
-}
+}

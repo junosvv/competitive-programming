@@ -23,4 +23,4 @@ int main() {
         sum += parities[k];
         cout << sum << " ";
     }
-}
+}

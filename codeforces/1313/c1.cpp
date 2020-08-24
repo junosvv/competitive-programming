@@ -178,4 +178,4 @@ main() {
         cur[j] = min(cur[j+1], a[j]);
     }
     FOR(i, 0, cur.size()) cout << cur[i] << ' ';
-}
+}

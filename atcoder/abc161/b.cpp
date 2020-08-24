@@ -94,4 +94,4 @@ signed main() {
     int res = 0;
     FOR(i, 0, n) if (a[i] >= (sum+4*m-1) / (4*m)) ++res;
     print(res>=m?"Yes" : "No");
-}
+}

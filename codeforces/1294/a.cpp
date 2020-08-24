@@ -86,4 +86,4 @@ main() {
         if (n >= need && (n-need)%3 == 0) print("YES");
         else print("NO");
     }
-}
+}

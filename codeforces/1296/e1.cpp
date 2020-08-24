@@ -116,4 +116,4 @@ main() {
         cout << "YES\n";
         REP(i, 0, n) cout << dp[i]-1;
     }
-}
+}

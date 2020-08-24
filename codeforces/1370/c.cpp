@@ -106,4 +106,4 @@ signed main() {
         }
         print(win ? "Ashishgup" : "FastestFinger");
     }
-}
+}

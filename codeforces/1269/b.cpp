@@ -82,4 +82,4 @@ main() {
         if (loops == aocc.size()) res = min(res, ((*bit).first-(*ait).first+m)%m);
     }
     cout << res;
-}
+}

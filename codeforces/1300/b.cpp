@@ -70,4 +70,4 @@ main() {
         sort(a.begin(), a.end());
         cout << a[n] - a[n-1] << '\n';
     }
-}
+}

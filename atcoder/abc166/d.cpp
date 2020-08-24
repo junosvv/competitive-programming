@@ -109,4 +109,4 @@ signed main() {
 			if (f(i) - f(j) > x) break;
 		}
 	}
-}
+}

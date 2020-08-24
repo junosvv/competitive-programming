@@ -88,4 +88,4 @@ signed main() {
     cin >> a;
 
     print(a[2], a[0], a[1]);
-}
+}

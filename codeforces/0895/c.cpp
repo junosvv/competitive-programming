@@ -115,4 +115,4 @@ main() {
         dp = dp2;
     }
     print((dp[0] + MOD - 1) % MOD);
-}
+}

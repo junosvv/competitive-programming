@@ -94,4 +94,4 @@ signed main() {
         if (a[0]+k < a[n-1]-k) cout << "-1\n";
         else cout << a[0]+k << '\n';
     }
-}
+}

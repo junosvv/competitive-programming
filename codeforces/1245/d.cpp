@@ -132,4 +132,4 @@ main() {
     FOR(x, 0, n) if (stat[x]) cout << x+1 << '\n';
     if (any) cout << connsA.size() << '\n';
     FOR(x, 0, connsA.size()) cout << connsA[x]+1 << ' ' << connsB[x]+1 << '\n';
-}
+}

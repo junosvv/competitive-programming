@@ -17,4 +17,4 @@ int main() {
         while (i < N && a[i] >= i+1) ++i;
         cout << i << '\n';
     }
-}
+}

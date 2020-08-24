@@ -91,4 +91,4 @@ main() {
         int boughtA = min(a, d);
         cout << boughtA*e + boughtB*f;
     }
-}
+}

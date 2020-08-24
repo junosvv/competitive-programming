@@ -68,4 +68,4 @@ main() {
         --x;
         cout << firsts[x%n] + seconds[x%m] << '\n';
     }
-}
+}

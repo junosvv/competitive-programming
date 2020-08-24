@@ -78,4 +78,4 @@ signed main() {
         cout << opsA.size() << '\n';
         REP(i, opsA.size()) cout << opsA[i]+1 << " " << opsB[i]+1 << '\n';
     }
-}
+}

@@ -95,4 +95,4 @@ signed main() {
         cur += cur / 100;
     }
     print(res);
-}
+}

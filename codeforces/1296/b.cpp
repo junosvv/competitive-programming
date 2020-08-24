@@ -81,4 +81,4 @@ main() {
         res += n;
         cout << res << '\n';
     }
-}
+}

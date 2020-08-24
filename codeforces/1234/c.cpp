@@ -99,4 +99,4 @@ signed main() {
         if (x == n && y==1) cout << "YES\n";
         else cout << "NO\n";
     }
-}
+}

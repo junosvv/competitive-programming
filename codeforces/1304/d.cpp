@@ -106,4 +106,4 @@ main() {
         FOR(i, 0, n) cout << res[i] << ' ';
         cout << '\n';
     }
-}
+}

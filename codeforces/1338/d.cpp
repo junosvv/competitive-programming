@@ -126,4 +126,4 @@ signed main() {
     blu.resize(n);
     dfs(0);
     print(res);
-}
+}

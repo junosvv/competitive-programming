@@ -68,4 +68,4 @@ main() {
         res = (res + (sq(n-k+1) % MOD * fact[k] % MOD * fact[n-k] % MOD)) % MOD;
     }
     cout << res;
-}
+}

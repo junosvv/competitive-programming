@@ -105,4 +105,4 @@ main() {
         res[i] = left*med - pref(pos, med-1) + query(pos, med+1, n) - right*med - left*(left+1)/2 - right*(right+1)/2;
     }
     REP(i, 1, n+1) cout << inv[i]+res[i] << ' ';
-}
+}

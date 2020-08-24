@@ -78,4 +78,4 @@ signed main() {
     dfs(1, 0, 0);
     cout << maxcnt << '\n';
     REP(i, n-1) cout << out[i] << '\n';
-}
+}

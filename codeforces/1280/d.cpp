@@ -109,4 +109,4 @@ main() {
         vector<pii> res = dfs(0, 0);
         cout << res[R-1].first + (res[R-1].second>0) << '\n';
     }
-}
+}

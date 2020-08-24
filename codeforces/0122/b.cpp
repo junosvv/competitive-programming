@@ -100,4 +100,4 @@ signed main() {
         exit(0);
     }
     print(c4>=c7 ? 4 : 7);
-}
+}

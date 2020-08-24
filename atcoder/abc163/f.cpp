@@ -204,4 +204,4 @@ signed main() {
 		print(n*(n+1)/2 - res);
 		// print("end:", tree);
 	}
-}
+}

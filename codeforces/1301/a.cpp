@@ -76,4 +76,4 @@ main() {
         }
         cout << (failed ? "NO" : "YES") << '\n';
     }
-}
+}

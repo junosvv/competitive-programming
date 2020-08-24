@@ -186,4 +186,4 @@ main() {
 		exit(0);
 	}
     FOR(i, 0, n) cout << cols[i] << ' ';
-}
+}

@@ -107,4 +107,4 @@ signed main() {
         if (h[u] > mx) ++res;
     }
     print(res);
-}
+}

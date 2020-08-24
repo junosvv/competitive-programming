@@ -126,4 +126,4 @@ signed main() {
     findbody(0);
     dfs(body);
     print(seen[0] && seen[1] ? 3 : 1, n-1-skipped);
-}
+}

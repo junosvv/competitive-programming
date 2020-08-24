@@ -121,4 +121,4 @@ main() {
     if (cnt >= k) cout << cost;
     else if (cnt == k-1) cout << cost+n;
     else cout << -1;
-}
+}

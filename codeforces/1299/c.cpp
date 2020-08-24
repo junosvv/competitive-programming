@@ -103,4 +103,4 @@ main() {
         res2[i] = min(res2[i+1], (ld)res[i].first / res[i].second);
     }
     for (ld i : res2) cout << setprecision(20) << i << '\n';
-}
+}

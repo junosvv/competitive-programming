@@ -120,4 +120,4 @@ signed main() {
         maxi(res, (cntbig?big[cntbig-1]:0) + (cntsmall?small[cntsmall-1]:0));
     }
     print(res);
-}
+}

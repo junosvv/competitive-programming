@@ -96,4 +96,4 @@ main() {
         prev = cur;
     }
     cout << "! " << res;
-}
+}

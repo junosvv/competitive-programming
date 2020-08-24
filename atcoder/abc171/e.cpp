@@ -94,4 +94,4 @@ signed main() {
     FOR(i, 0, n) x ^= a[i];
 
     FOR(i, 0, n) cout << (x ^ a[i]) << ' ';
-}
+}

@@ -136,4 +136,4 @@ main() {
     if (sum > 1) res = min(res, check(sum));
     if (res == INF) cout << -1;
     else cout << res;
-}
+}

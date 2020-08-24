@@ -120,4 +120,4 @@ main() {
         FOR(j, 0, grid[0].size()) cout << grid[i][j];
         cout << '\n';
     }
-}
+}

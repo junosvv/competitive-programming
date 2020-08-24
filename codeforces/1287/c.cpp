@@ -126,4 +126,4 @@ main() {
         if (a[i-1] != a[i]) ++res;
     }
     cout << res;
-}
+}
