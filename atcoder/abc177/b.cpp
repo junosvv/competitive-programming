@@ -82,5 +82,19 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    string s, t;
+    cin >> s >> t;
+
+    int res = INF;
+    FOR(i, 0, SIZE(s)-SIZE(t)+1) {
+        string q = s.substr(i, SIZE(t));
+        int cur = 0;
+        FOR(j, 0, SIZE(t)) {
+            if (q[j] != t[j]) {
+                ++cur;
+            }
+        }
+        mini(res, cur);
+    }
+    print(res);
 }

@@ -82,5 +82,22 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    int R, C;
+    cin >> R >> C;
+
+    int left1 = 0, left2 = 0;
+    FOR(i, 0, R) {
+        int l, r;
+        cin >> l >> r;
+        --l; --r;
+
+        if (l <= left) {
+            maxi(left, r+1);
+        }
+        if (left >= C) {
+            print(-1);
+        } else {
+            print(left + i + 1);
+        }
+    }
 }

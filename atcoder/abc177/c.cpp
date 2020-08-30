@@ -82,5 +82,17 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    int n;
+    cin >> n;
+    vi a(n);
+    cin >> a;
+
+    int sum = 0;
+    int sqsum = 0;
+    FOR(i, 0, n) {
+        sum = (sum + a[i]) % MOD;
+        sqsum = (sqsum + a[i]*a[i]%MOD) % MOD;
+    }
+    sum = sum * sum % MOD;
+    print((sum + MOD - sqsum) * inv(2) % MOD);
 }

@@ -82,5 +82,71 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
+    int n, k;
+    cin >> n >> k;
     
+    vi a(n);
+    cin >> a;
+
+    if (n == k || *max_element(ALL(a)) < 0 && k&1) {
+        sort(RALL(a));
+        int res = 1;
+        FOR(i, 0, k) {
+            res = res * (MOD+a[i]) % MOD;
+        }
+        print(res);
+        exit(0);
+    }
+
+    sort(RALL(a), [](int x, int y) {
+        return abs(x) == abs(y) ? x<y : abs(x) < abs(y);
+    });
+    // print(a);
+
+    int res = 1;
+    bool pos = true;
+    int lastpos = INF;
+    int lastneg = INF;
+    FOR(i, 0, k) {
+        if (a[i] < 0) {
+            pos ^= 1;
+            lastneg = a[i];
+        } else {
+            lastpos = a[i];
+        }
+        res = res * (MOD+a[i]) % MOD;
+    }
+
+    if (res == 0 || pos) {
+        print(res);
+        exit(0);
+    }
+
+    int a1=1, b1=INF, a2=1, b2=INF;
+    FOR(j, k, n) {
+        if (a[j] >= 0) {
+            assert (lastneg != INF);
+            a1 = a[j];
+            b1 = lastneg;
+            break;
+        }
+    }
+
+    FOR(j, k, n) {
+        if (a[j] <= 0) {
+            if (lastpos != INF) {
+                a2 = a[j];
+                b2 = lastpos;
+                break;
+            }
+        }
+    }
+    
+    // print(res, a1, b1, a2, b2);
+    if (b1 != INF && (b2==INF || a1*b2 > a2*b1)) {
+        res = res * (MOD+a1) % MOD * inv(MOD+b1) % MOD;
+    } else {
+        res = res * (MOD+a2) % MOD * inv(MOD+b2) % MOD;
+    }
+    print(res);
 }

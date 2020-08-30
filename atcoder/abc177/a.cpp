@@ -82,5 +82,8 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    int a, b, c;
+    cin >> a >> b >> c;
+
+    print(b*c >= a ? "Yes" : "No");
 }

@@ -82,5 +82,40 @@ bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    int n;
+    cin >> n;
+    vi a(n);
+    cin >> a;
+
+    const int BIG = 1e6+5;
+    vi sieve(BIG);
+    FOR(p, 2, BIG) if (!sieve[p]) for (int u=p*p; u<BIG; u+=p) sieve[u] = p;
+
+    vi occ(BIG), lastocc(BIG, -1);
+    FOR(i, 0, n) {
+        int x = a[i];
+        vi facts;
+        while (sieve[x]) {
+            facts.push_back(sieve[x]);
+            x /= sieve[x];
+        }
+        if (x != 1) {
+            facts.push_back(x);
+        }
+        for (int d : facts) {
+            if (lastocc[d] != i) {
+                ++occ[d];
+            }
+            lastocc[d] = i;
+        }
+    }
+
+    int mx = *max_element(ALL(occ));
+    if (mx <= 1) {
+        print("pairwise coprime");
+    } else if (mx != n) {
+        print("setwise coprime");
+    } else {
+        print("not coprime");
+    }
 }

@@ -78,9 +78,43 @@ int powa(int base, int exp) {
 }
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
- 
+
+vb seen;
+vvi nodes;
+int dfs(int u, int p=-1) {
+    if (seen[u]) {
+        return 0;
+    }
+    seen[u] = true;
+
+    int res = 1;
+    for (int v : nodes[u]) if (v != p) {
+        res += dfs(v);
+    }
+    return res;
+}
+
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    int n, m;
+    cin >> n >> m;
+
+    nodes.resize(n);
+    FOR(i, 0, m) {
+        int a, b;
+        cin >> a >> b;
+        --a; --b;
+
+        nodes[a].push_back(b);
+        nodes[b].push_back(a);
+    }
+
+    seen.resize(n);
+
+    int res = 0;
+    FOR(i, 0, n) {
+        maxi(res, dfs(i));
+    }
+    print(res);
 }
