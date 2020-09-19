@@ -3,8 +3,8 @@ using namespace std;
  
 #define int long long
 #define dub long double
-#define FOR(i, a, b) for (int (i)=(a); (i)<(b); ++(i))
-#define ROF(i, a, b) for (int (i)=(a); (i)>(b); --(i))
+#define FOR(i, a, b) for (int i=(a); i<(b); ++i)
+#define ROF(i, a, b) for (int i=(a); i>(b); --i)
 #define CASET int _T; cin >> _T; FOR(caset, 1, _T+1)
 #define pii pair<int,int>
 #define t3i tuple<int,int,int>
@@ -16,15 +16,16 @@ using namespace std;
 #define vvb vector<vb>
 #define vpii vector<pii>
 #define vt3i vector<t3i>
+#define vvpii vector<vpii>
 #define sq(x) (x)*(x)
 #define inv(x) powa(x, MOD-2)
 #define ALL(x) (x).begin(), (x).end()
 #define RALL(x) (x).rbegin(), (x).rend()
-#define SIZE(x) (signed)(x).size()
+#define SIZE(x) (int)(x).size()
 #define SUM(x) accumulate(ALL(x), 0LL)
  
 long long INF = 1LL<<60;
-long long MOD = 1e9+7;
+long long MOD = 1e9 + 7;
  
 namespace output {
     void pr(short x) { cout << x; }
@@ -63,9 +64,6 @@ namespace output {
 }
 using namespace output;
  
-template<typename T = int> vector<T> create(size_t n){ return vector<T>(n); }
-template<typename T, typename... Args> auto create(size_t n, Args... args){ return vector<decltype(create<T>(args...))>(n, create<T>(args...)); }
-
 template <class T1, class T2> istream &operator>>(istream &is, pair<T1,T2> &x) { is >> x.first >> x.second; return is; }
 template <class T1, class T2, class T3> istream &operator>>(istream &is, tuple<T1,T2,T3> &x) { is >> get<0>(x) >> get<1>(x) >> get<2>(x); return is; }
 template <class T> istream &operator>>(istream &is, vector<T> &v) { for (auto &x : v) is >> x; return is; }
@@ -80,74 +78,22 @@ int powa(int base, int exp) {
 }
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
-
-vvi nodes;
-vi lev, backcnt, compsize;
-void initdfs(int u) {
-    backcnt[u] = 0;
-    compsize[u] = 1;
-    for (int v : nodes[u]) {
-        if (lev[v] == 0) {
-            lev[v] = 1 + lev[u];
-            initdfs(v);
-            if (backcnt[v]) {
-                compsize[u] += compsize[v];
-                backcnt[u] += backcnt[v];
-            }
-        } else if (lev[v] < lev[u] - 1) {
-            ++backcnt[u];
-        } else if (lev[v] > lev[u]) {
-            --backcnt[u];
-        }
-    }
-}
-
-map<pii, int> id;
-vpii res;
-void facedfs(int u) {
-    for (int v : nodes[u]) {
-        if (lev[v] == 0) {
-            lev[v] = 1 + lev[u];
-            if (backcnt[v] == 0) res[id[{u, v}]] = {v, u};
-            else res[id[{u, v}]] = {u, v};
-            facedfs(v);
-        } else if (lev[v] < lev[u] - 1) {
-            res[id[{u, v}]] = {u, v};
-        }
-    }
-}
-
+ 
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
     int n, m;
     cin >> n >> m;
-    
-    nodes.resize(n);
+
+    vvi nodes(n);
     FOR(i, 0, m) {
-        int x, y;
-        cin >> x >> y;
-        --x; --y;
-        nodes[x].push_back(y);
-        nodes[y].push_back(x);
-        id[{x, y}] = id[{y, x}] = i;
+        int a, b;
+        cin >> a >> b;
+        --a; --b;
+
+        nodes[a].push_back(b);
+        nodes[b].push_back(a);
     }
 
-    lev.resize(n);
-    lev[0] = 1;
-    backcnt.resize(n);
-    compsize.resize(n);
-    initdfs(0);
-    int big = max_element(ALL(compsize)) - compsize.begin();
-
-    lev.assign(n, 0);
-    lev[big] = 1;
-    initdfs(big);
-    lev.assign(n, 0);
-    lev[big] = 1;
-    res.resize(m);
-    facedfs(big);
-
-    print(compsize[big]);
-    for (pii pr : res) print(pr.first+1, pr.second+1);
-}
+    
+}

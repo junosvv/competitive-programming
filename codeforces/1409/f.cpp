@@ -97,44 +97,21 @@ signed main() {
         x = min(x+k, n);
         print(x*(x-1) / 2);
     } else {
-        int res = 0;
-        FOR(a, 0, k+1) {
-            FOR(b, 0, k-a+1) {
-                string t2 = s;
-                int cur = 0;
-                FOR(i, 0, n) {
-                    if (cur == b) {
-                        break;
-                    }
-                    if (t2[i] == t[1]) {
-                        t2[i] = t[0];
-                        ++cur;
-                    }
+        vvi dp(k+1, vi(n+1, -INF));
+        dp[0][0] = 0;
+        FOR(i, 0, n) {
+            vvi dp2(k+1, vi(n+1, -INF));
+            FOR(m, 0, k+1) FOR(cnta, 0, n+1) if (dp[m][cnta] != -INF) {
+                bool isa = s[i] == t[0];
+                bool isb = s[i] == t[1];
+                if (cnta+isa <= n) maxi(dp2[m][cnta + isa], dp[m][cnta] + isb*cnta);
+                if (m+1 <= k) {
+                    maxi(dp2[m+1][cnta+1], dp[m][cnta]);
+                    maxi(dp2[m+1][cnta], dp[m][cnta] + cnta);
                 }
-                cur = 0;
-                ROF(i, n-1, -1) {
-                    if (cur == a) {
-                        break;
-                    }
-                    if (t2[i] == t[0]) {
-                        t2[i] = t[1];
-                        ++cur;
-                    }
-                }
-                int cnta = 0;
-                cur = 0;
-                FOR(i, 0, n) {
-                    if (t2[i] == t[0]) {
-                        ++cnta;
-                    } else if (t2[i] == t[1]) {
-                        cur += cnta;
-                    }
-                }
-                print(a, b, t2, ":", cur);
-                maxi(res, cur);
             }
+            dp = dp2;
         }
-        print(res);
+        print(*max_element(ALL(dp[k])));
     }
-
 }

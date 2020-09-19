@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+ 
 #define int long long
 #define dub long double
 #define FOR(i, a, b) for (int i=(a); i<(b); ++i)
@@ -23,10 +23,10 @@ using namespace std;
 #define RALL(x) (x).rbegin(), (x).rend()
 #define SIZE(x) (int)(x).size()
 #define SUM(x) accumulate(ALL(x), 0LL)
-
+ 
 long long INF = 1LL<<60;
 long long MOD = 1e9 + 7;
-
+ 
 namespace output {
     void pr(short x) { cout << x; }
     void pr(signed x) { cout << x; }
@@ -63,7 +63,7 @@ namespace output {
     template<class T, class... Ts> void print(const T& t, const Ts&... ts) { pr(t); if (sizeof...(ts)) pr(" "); print(ts...); }
 }
 using namespace output;
-
+ 
 template <class T1, class T2> istream &operator>>(istream &is, pair<T1,T2> &x) { is >> x.first >> x.second; return is; }
 template <class T1, class T2, class T3> istream &operator>>(istream &is, tuple<T1,T2,T3> &x) { is >> get<0>(x) >> get<1>(x) >> get<2>(x); return is; }
 template <class T> istream &operator>>(istream &is, vector<T> &v) { for (auto &x : v) is >> x; return is; }
@@ -78,9 +78,41 @@ int powa(int base, int exp) {
 }
 bool mini(int &a, int b) { return b < a ? a = b, 1 : 0; }
 bool maxi(int &a, int b) { return b > a ? a = b, 1 : 0; }
-
+ 
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
     
-    
+    int n;
+    cin >> n;
+
+    vi res(n);
+    int i = 0, j = 1;
+    while (i<n && j<n) {
+        print('?', i+1, j+1);
+        cout.flush();
+        int ij;
+        cin >> ij;
+        print('?', j+1, i+1);
+        cout.flush();
+        int ji;
+        cin >> ji;
+
+        if (ij > ji) {
+            res[i] = ij;
+            while (i<n && res[i]) ++i;
+            if (i == j) ++j;
+        } else {
+            res[j] = ji;
+            while (j<n && res[j]) ++j;
+        }
+    }
+    FOR(i, 0, n) {
+        if (res[i] == 0) {
+            res[i] = n*(n+1)/2 - SUM(res);
+            break;
+        }
+    }
+    cout << "! ";
+    FOR(i, 0, n) cout << res[i] << ' ';
+    print();
 }
