@@ -21,7 +21,7 @@ for i in range(len(bitmap)):
 
 maxA = max(a, maxA)
 
-print(maxA)
+print(maxA, 50)
 
 
 
