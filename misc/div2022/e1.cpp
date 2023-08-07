@@ -5,7 +5,7 @@ using namespace std;
 #define FOR(i, a, b) for (int i=(a); i<(b); ++i)
 #define ROF(i, a, b) for (int i=(a); i>(b); --i)
 #define vi vector<int>
-#define t3i tuple<int,int,int>
+#define pii pair<int,int>
 
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
@@ -14,14 +14,12 @@ signed main() {
     cin >> n;
     
     vi l(n), r(n);
-    vector<t3i> tups;
+    vector<vector<pii>> toadd(n+1);
     FOR(i, 0, n) {
         cin >> l[i] >> r[i];
         --l[i]; --r[i];
-        tups.emplace_back(l[i], r[i], i);
+        toadd[l[i]].emplace_back(i, r[i]);
     }
-    sort(tups.begin(), tups.end());
-    reverse(tups.begin(), tups.end());
 
     vi tree(2*n);
     auto query = [&](int l, int r) {
@@ -39,34 +37,32 @@ signed main() {
 
     auto upd = [&](int x, int delta) {
         x += n;
-        tree[x] = delta;
-        x /= 2;
-        while (x) {
-            tree[x] = max(tree[2*x], tree[2*x+1]);
+        if (tree[x] < delta) {
+            tree[x] = delta;
             x /= 2;
+            while (x) {
+                tree[x] = max(tree[2*x], tree[2*x+1]);
+                x /= 2;
+            }
         }
     };
 
-    FOR(left, 0, r[0]+1) {
-        while (!tups.empty()) {
-            int li, ri, i;
-            tie(li, ri, i) = tups.back();
-            if (li > left) break;
-            upd(i, ri);
-            tups.pop_back();
+    int succ = n-1;
+    FOR(i, 0, n) {
+        for (pii pr : toadd[i]) {
+            int x, r;
+            tie(x, r) = pr;
+            upd(x, r);
         }
-
-        int right = r[left] + 1;
-        int upp = left==0 ? n : r[left-1] + 1;
-        while (right < upp) {
-            int q = query(left, right);
-            if (q < right) {
-                cout << "No " << left+1 << ' ' << right+1;
+        int at = i+1;
+        while (at <= succ) {
+            int u = query(i, at);
+            if (u < at) {
+                cout << "No " << i+1 << ' ' << at+1;
                 exit(0);
             }
-            right = q + 1;
+            at = u + 1;
         }
+        succ = min(succ, );
     }
-
-    cout << "Yes";
 }
