@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define int long long
+#define FOR(i, a, b) for (int i=(a); i<(b); ++i)
+#define ROF(i, a, b) for (int i=(a); i>(b); --i)
+#define vi vector<int>
+
+signed main() {
+    ios::sync_with_stdio(0), cin.tie(0);
+    
+    int n;
+    cin >> n;
+    vi a(2*n);
+    FOR(i, 0, 2*n) cin >> a[i];
+
+    vi res;
+    FOR(i, 1, 2*n) {
+        if (i&1 && a[i-1] > a[i] || !(i&1) && a[i-1] < a[i]) {
+            swap(a[i-1], a[i]);
+            res.push_back(i);
+        }
+    }
+    cout << res.size() << '\n';
+    for (int i : res) cout << i << ' ';
+}
