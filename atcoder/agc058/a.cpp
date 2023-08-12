@@ -15,12 +15,22 @@ signed main() {
     FOR(i, 0, 2*n) cin >> a[i];
 
     vi res;
-    FOR(i, 1, 2*n) {
-        if (i&1 && a[i-1] > a[i] || !(i&1) && a[i-1] < a[i]) {
-            swap(a[i-1], a[i]);
-            res.push_back(i);
+    auto myswap = [&](int l, int r) {
+        res.push_back(l+1);
+        swap(a[l], a[r]);
+    };
+
+    FOR(i, 0, n-1) {
+        if (a[2*i] < a[2*i+1]) {
+            if (a[2*i+1] < a[2*i+2]) myswap(2*i+1, 2*i+2);
+        }
+        else {
+            // a[2*i] > a[2*i+1]
+            if (a[2*i] > a[2*i+2]) myswap(2*i, 2*i+1);
+            else myswap(2*i+1, 2*i+2);
         }
     }
+    if (a[2*n-2] > a[2*n-1]) myswap(2*n-2, 2*n-1);
     cout << res.size() << '\n';
     for (int i : res) cout << i << ' ';
 }

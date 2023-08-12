@@ -32,14 +32,8 @@ signed main() {
     }
     sort(rects.begin(), rects.end());
 
-    // FOR(i, 0, n) {
-    //     FOR(j, 0, 3) cout << rects[i][j] << ' ';
-    //     cout << '\n';
-    // }
-
     vi tree(2*m, 1e9);
     auto upd = [&](int x, int val) {
-        // cout << "updating " << x << " to " << val << '\n';
         x += m;
         tree[x] = val;
         x /= 2;
@@ -50,7 +44,6 @@ signed main() {
     };
 
     auto query = [&](int l, int r) {
-        // cout << "min " << l << " to " << r << " is ";
         l += m;
         r += m;
         int res = 1e9;
@@ -60,7 +53,6 @@ signed main() {
             l /= 2;
             r /= 2;
         }
-        // cout << res << '\n';
         return res;
     };
 
