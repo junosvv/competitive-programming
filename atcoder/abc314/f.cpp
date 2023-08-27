@@ -42,8 +42,9 @@ signed main() {
         if (size[u] > size[v]) swap(u, v);
 
         int denom = inv(size[u] + size[v]);
+        res[u] = (res[u] + size[u] * denom) % MOD;
         res[v] = (res[v] + size[v] * denom) % MOD;
-        res[u] = (res[u] + (size[u]-size[v]+MOD) % MOD * denom) % MOD;
+        res[u] = (res[u] + MOD - res[v]) % MOD;
 
         par[u] = v;
         size[v] += size[u];
@@ -52,22 +53,11 @@ signed main() {
 
     function<void(int)> dfs = [&](int u) {
         for (int v : G[u]) {
-            res[v] += res[u];
+            res[v] = (res[v] + res[u]) % MOD;
             dfs(v);
         }
     };
 
-    cout << 5*inv(6) % MOD << ' ' << inv(3) % MOD << '\n';
-
-    cout << "par: ";
-    for (int u : par) cout << u << ' ';
-    cout << '\n';
-
-    cout << "res: ";
-    for (int u : res) cout << u << ' ';
-    cout << '\n';
-
     dfs(find(0));
-
-    for (int i : res) cout << i << ' ';
+    for (auto i : res) cout << i << ' ';
 }
