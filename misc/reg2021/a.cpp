@@ -9,7 +9,7 @@ using namespace std;
 
 signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
-
+    
     int n, m, k;
     cin >> n >> m >> k;
 
@@ -21,45 +21,57 @@ signed main() {
         G[u].push_back(v);
     }
 
-    vi seen2(n);
-    function<bool(int)> dfs2 = [&](int u) {
+    vvi res;
+    vi seen(n), stack;
+    function<bool(int)> dfs = [&](int u) {
+        seen[u] = true;
+        stack.push_back(u);
         if (u == n-1) return true;
-        seen2[u] = true;
-        for (int v : G[u]) if (!seen2[v]) {
-            if (dfs2(v)) {
-                seen2[u] = false;
-                return true;
-            }
+        for (int v : G[u]) if (!seen[v]) {
+            if (dfs(v)) return true;
         }
-        seen2[u] = false;
+        stack.pop_back();
         return false;
     };
 
-    vi seen(n), stack;
-    vvi res;
-    function<void(int)> dfs = [&](int u) {
-        if (!dfs2(u)) return;
-        seen[u] = true;
-        seen2[u] = true;
-        stack.push_back(u);
-        if (u == n-1) {
+    set<vi> setres;
+    auto upd = [&]() {
+        if (!setres.count(stack)) {
             res.push_back(stack);
-        } else {
-            for (int v : G[u]) if (!seen[v]) {
-                dfs(v);
+            setres.insert(stack);
+            if (res.size() >= k) {
+                FOR(i, 0, k) {
+                    cout << res[i].size() << ' ';
+                    for (int j : res[i]) cout << j+1 << ' ';
+                    cout << '\n';
+                }
+                exit(0);
             }
         }
-        stack.pop_back();
-        seen[u] = false;
-        seen2[u] = false;
     };
-    dfs(0);
-    
-    if (res.size() >= k) {
-        FOR(i, 0, k) {
-            cout << res[i].size() << ' ';
-            for (int j : res[i]) cout << j+1 << ' ';
-            cout << '\n';
+
+    if (dfs(0)) upd();
+    int i = 0;
+    while (i < res.size()) {
+        int len = res[i].size();
+        FOR(l, 1, len) {
+            for (int v : G[res[i][l-1]]) if (v != res[i][l]) {
+                bool fail = false;
+                FOR(u, 0, l) if (res[i][u] == v) {
+                    fail = true;
+                    break;
+                }
+                if (fail) continue;
+                seen.assign(n, false);
+                stack.clear();
+                FOR(u, 0, l) {
+                    stack.push_back(res[i][u]);
+                    seen[res[i][u]] = true;
+                }
+                if (dfs(v)) upd();
+            }
         }
-    } else cout << "Stay at home";
+        ++i;
+    }
+    cout << "Stay at home";
 }

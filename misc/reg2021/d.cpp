@@ -41,7 +41,8 @@ signed main() {
                 vi opts(n);
                 FOR(j, 0, n) if (j != i) {
                     int v = leaves[j];
-                    opts[j] = dist[u][v] + (its[j] == 0 ? 0 : dp[its[j]-1][j]);
+                    assert(its[j]-1 >= 0);
+                    opts[j] = dist[u][v] + dp[its[j]-1][j];
                 }
                 int mx = max_element(opts.begin(), opts.end()) - opts.begin();
                 --its[mx];
