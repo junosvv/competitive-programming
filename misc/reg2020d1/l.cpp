@@ -14,10 +14,6 @@ signed main() {
     
     int n, m;
     cin >> n >> m;
-    if (n == 1 && m == 0) {
-        cout << 0;
-        exit(0);
-    }
     vvi G(n);
     FOR(i, 0, m) {
         int u, v;
@@ -60,23 +56,7 @@ signed main() {
         par.assign(gsize, -1);
         par[source] = -2;
         if (!dfs2(source)) {
-            cout << "flow: " << n-flow << '\n';
-            vi got(n);
-            FOR(u, 0, n) {
-                got[u] = u;
-                FOR(v, 0, n) if (capac[n+v][u]) got[u] = v;
-            }
-            FOR(u, 0, n) if (got[u] != -1) {
-                int v = u;
-                while (true) {
-                    cout << v+1 << ' ';
-                    int w = got[v];
-                    got[v] = -1;
-                    if (v == w) break;
-                    v = w;
-                }
-                cout << '\n';
-            }
+            cout << n-flow << '\n';
             break;
         }
         int v = sink;

@@ -13,48 +13,27 @@ signed main() {
     
     int a, b, c, d;
     cin >> a >> b >> c >> d;
-
+    
     const int BIG = 1e6+1;
-    vi sieve(BIG);
-    FOR(p, 2, BIG) if (!sieve[p]) for (int u=p; u<BIG; u+=p) sieve[u] = p;
-
-    auto cnt = [&](int l, int r, int k) {
-        int ll = (l+k-1)/k*k;
-        if (ll > r) return 0LL;
-        return (r-ll) / k + 1;
-    };
-
-    auto check = [&](int n) {
-        vi facts;
-
-        int n0 = n;
-        if (n >= BIG) {
-            for (int d=2; d*d<=n; ++d) {
-                if (n%d == 0) {
-                    facts.push_back(d);
-                    n /= d;
-                    if (n%d == 0) return 0LL;
-                }
-            }
-            if (n >= BIG) {
-                facts.push_back(n);
-                n = 1;
-            }
+    vi sieve(BIG), primes;
+    FOR(p, 2, BIG) if (!sieve[p]) {
+        primes.push_back(p);
+        for (int u=p; u<BIG; u+=p) sieve[u] = p;
+    }
+    cout << primes.size() << '\n';
+    vi primes_all = primes, primes_new = primes;
+    FOR(p, 0, primes.size()) {
+        int k=p;
+        for (int js=primes.size(); js>=1; js/=2) {
+            while (k+js < primes.size() && primes[p]*primes[k+js] < a) k += js;
         }
-        while (sieve[n]) {
-            facts.push_back(sieve[n]);
-            n /= sieve[n];
-            if (sieve[n] == facts.back()) return 0LL;
+        ++k;
+        FOR(q, k, primes.size()) {
+            int u = primes[p]*primes[q];
+            if (u > b) break;
+            primes2.push_back(u);
+            primes_all.push_back(primes[pp]);
         }
-        n = n0;
-
-        int sign = facts.size()&1 ? -1 : 1;
-        // if (sign*cnt(a,b,n)*cnt(c,d,n)) cout << n << " adding " << sign * cnt(a, b, n) * cnt(c, d, n) << endl;
-        return sign * cnt(a, b, n) * cnt(c, d, n);
-    };
-
-    int res = 0;
-    FOR(n, 2, BIG) res += check(n);
-    FOR(n, max(BIG, a), b+1) res += check(n);
-    cout << (b-a+1)*(d-c+1) + res;
+    }
+    cout << primes2.size() << '\n';
 }
