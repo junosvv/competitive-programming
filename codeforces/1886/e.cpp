@@ -7,20 +7,16 @@ using namespace std;
 #define vi vector<int>
 #define vvi vector<vi>
 #define pii pair<int,int>
+#define SQ(x) (x)*(x)
+
 
 signed main() {
-    int n;
-    cin >> n;
-    vi a(n);
+    ios::sync_with_stdio(0), cin.tie(0);
+
+    int n, m;
+    cin >> n >> m;
+    vi a(n), b(m);
     FOR(i, 0, n) cin >> a[i];
-    int res = accumulate(a.begin(), a.end(), 0LL);
+    FOR(i, 0, m) cin >> b[i];
     
-    priority_queue<int,vi,greater<int>> pq;
-    FOR(i, 0, n) {
-        pq.push(a[i]);
-        pq.push(a[i]);
-        res -= pq.top();
-        pq.pop();
-    }
-    cout << res;
 }

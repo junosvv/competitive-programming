@@ -9,18 +9,17 @@ using namespace std;
 #define pii pair<int,int>
 
 signed main() {
-    int n;
-    cin >> n;
+    ios::sync_with_stdio(0), cin.tie(0);
+    
+    int n, m;
+    cin >> n >> m;
+    m = n-m;
     vi a(n);
     FOR(i, 0, n) cin >> a[i];
-    int res = accumulate(a.begin(), a.end(), 0LL);
-    
-    priority_queue<int,vi,greater<int>> pq;
-    FOR(i, 0, n) {
-        pq.push(a[i]);
-        pq.push(a[i]);
-        res -= pq.top();
-        pq.pop();
-    }
+    sort(a.begin(), a.end());
+
+    int res = 0;
+    FOR(i, 0, n) res += a[i]*a[i];
+    FOR(i, 0, m) res += 2 * a[i] * a[2*m-1-i];
     cout << res;
 }

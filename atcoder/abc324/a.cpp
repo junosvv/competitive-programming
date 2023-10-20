@@ -9,18 +9,12 @@ using namespace std;
 #define pii pair<int,int>
 
 signed main() {
+    ios::sync_with_stdio(0), cin.tie(0);
+
     int n;
     cin >> n;
     vi a(n);
     FOR(i, 0, n) cin >> a[i];
-    int res = accumulate(a.begin(), a.end(), 0LL);
-    
-    priority_queue<int,vi,greater<int>> pq;
-    FOR(i, 0, n) {
-        pq.push(a[i]);
-        pq.push(a[i]);
-        res -= pq.top();
-        pq.pop();
-    }
-    cout << res;
+
+    cout << (*min_element(a.begin(), a.end()) == *max_element(a.begin(), a.end()) ? "Yes": "No");
 }

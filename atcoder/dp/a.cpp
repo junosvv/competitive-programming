@@ -8,19 +8,26 @@ using namespace std;
 #define vvi vector<vi>
 #define pii pair<int,int>
 
+void maxi(int& a, int b) {
+    a = max(a, b);
+}
+void mini(int& a, int b) {
+    a = min(a, b);
+}
+
 signed main() {
+    ios::sync_with_stdio(0), cin.tie(0);
+
     int n;
     cin >> n;
     vi a(n);
     FOR(i, 0, n) cin >> a[i];
-    int res = accumulate(a.begin(), a.end(), 0LL);
     
-    priority_queue<int,vi,greater<int>> pq;
-    FOR(i, 0, n) {
-        pq.push(a[i]);
-        pq.push(a[i]);
-        res -= pq.top();
-        pq.pop();
+    vi dp(n, 1e9);
+    dp[0] = 0;
+    FOR(i, 1, n) {
+        mini(dp[i], dp[i-1] + abs(a[i] - a[i-1]));
+        if (i-2 >= 0) mini(dp[i], dp[i-2] + abs(a[i] - a[i-2]));
     }
-    cout << res;
+    cout << dp[n-1];
 }

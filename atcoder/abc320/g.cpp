@@ -8,8 +8,6 @@ using namespace std;
 #define pii pair<int,int>
 
 signed main() {
-    ios::sync_with_stdio(0), cin.tie(0);
-    
     int n, m;
     cin >> n >> m;
     vector<string> s(n);
