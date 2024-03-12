@@ -14,13 +14,12 @@ signed main() {
     auto solve = [&]() {
         int n;
         cin >> n;
-        vi a(2*n);
-        FOR(i, 0, 2*n) cin >> a[i];
-        sort(a.begin(), a.end());
-
-        int res = 0;
-        FOR(i, 0, n) res += a[2*i];
-        cout << res << '\n';
+        int lo = 1, hi = n;
+        FOR(i, 0, n) {
+            if (i&1) cout << hi-- << ' ';
+            else cout << lo++ << ' ';
+        }
+        cout << '\n';
     };
 
     int T;
