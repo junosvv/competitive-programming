@@ -12,19 +12,25 @@ signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
 
     auto solve = [&]() {
-        int x;
-        cin >> x;
-        vi res;
-        while (x) {
-            if (x % 2 == 0) res.push_back(0);
-            else if (x % 4 == 1) res.push_back(1);
-            else {
-                res.push_back(-1);
-                ++x;
+        int n;
+        cin >> n;
+        vi a(n);
+        FOR(i, 0, n) cin >> a[i];
+
+        vi seen(n+1), res(n);
+        int i = 0;
+        FOR(t, 0, n) {
+            if (a[t] > 0) {
+                res[t] = i;
+            } else if (a[t] < 0) {
+                assert(!seen[i-a[t]]);
+                res[t] = i-a[t];
+            } else {
+                assert(false);
             }
-            x /= 2;
+            seen[res[t]] = 1;
+            while (seen[i]) ++i;
         }
-        cout << res.size() << '\n';
         for (int i : res) cout << i << ' ';
         cout << '\n';
     };

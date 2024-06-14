@@ -12,21 +12,19 @@ signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
 
     auto solve = [&]() {
-        int x;
-        cin >> x;
-        vi res;
-        while (x) {
-            if (x % 2 == 0) res.push_back(0);
-            else if (x % 4 == 1) res.push_back(1);
-            else {
-                res.push_back(-1);
-                ++x;
-            }
-            x /= 2;
+        int n, k;
+        cin >> n >> k;
+        if (k == n) {
+            FOR(i, 0, n) cout << 1 << ' ';
+            cout << '\n';
+            return;
         }
-        cout << res.size() << '\n';
-        for (int i : res) cout << i << ' ';
-        cout << '\n';
+        if (k == 1) {
+            FOR(i, 0, n) cout << i+1 << ' ';
+            cout << '\n';
+            return;
+        }
+        cout << "-1\n";
     };
 
     int T;

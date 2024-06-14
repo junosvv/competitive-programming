@@ -12,21 +12,18 @@ signed main() {
     ios::sync_with_stdio(0), cin.tie(0);
 
     auto solve = [&]() {
-        int x;
-        cin >> x;
-        vi res;
-        while (x) {
-            if (x % 2 == 0) res.push_back(0);
-            else if (x % 4 == 1) res.push_back(1);
-            else {
-                res.push_back(-1);
-                ++x;
-            }
-            x /= 2;
+        int n, k;
+        cin >> n >> k;
+        if (n == k) {
+            cout << "YES\n1\n1\n";
+            return;
         }
-        cout << res.size() << '\n';
-        for (int i : res) cout << i << ' ';
-        cout << '\n';
+        if (n < 2*k-1) {
+            cout << "NO\n";
+            return;
+        }
+        cout << "YES\n2\n" << n-k+1 << " 1\n";
+        return;
     };
 
     int T;

@@ -29,53 +29,35 @@ signed main() {
         vi a(n);
         FOR(i, 0, n) cin >> a[i];
 
-        multiset<int> factset;
-        FOR(i, 0, n) {
-            int prev = -1;
-            vi cur;
-            for (int d : pf(a[i])) {
-                if (d != prev) {
-                    while (cur.size() > factset.count(prev)) {
-                        factset.insert(prev);
-                    }
-                    cur.clear();
-                }
-                cur.push_back(d);
-                prev = d;
-            }
-            while (cur.size() > factset.count(prev)) {
-                factset.insert(prev);
-            }
-        }
-        vi facts;
-        for (int i : factset) facts.push_back(i);
-        int f = facts.size();
-
-        // cout << "facts: ";
-        // for (int i : facts) cout << i << ' ';
-        // cout << '\n';
-
-        int prod = 1;
         int mx = *max_element(a.begin(), a.end());
-        for (int i : facts) {
-            prod *= i;
-            if (prod > mx) {
+        int lcm = 1;
+        FOR(i, 0, n) {
+            lcm *= a[i] / __gcd(lcm, a[i]);
+            if (lcm > mx) {
                 cout << n << '\n';
                 return;
             }
         }
 
         int res = 0;
-        FOR(mask, 1, 1LL<<f) {
-            int prod = 1;
-            FOR(i, 0, f) if (mask>>i&1LL) prod *= facts[i];
-            bool fail = false;
-            FOR(i, 0, n) if (a[i] == prod) fail = true;
-            if (fail) continue;
-
+        auto check = [&](int x) {
+            int lcm = 1;
             int cnt = 0;
-            FOR(i, 0, n) if (prod % a[i] == 0) ++cnt;
-            res = max(res, cnt);
+            FOR(i, 0, n) {
+                if (x == a[i]) return;
+                if (x % a[i] == 0) {
+                    lcm *= a[i] / __gcd(lcm, a[i]);
+                    ++cnt;
+                }
+            }
+            if (lcm == x) res = max(res, cnt);
+        };
+
+        for (int d = 1; d*d <= mx; ++d) {
+            if (mx % d == 0) {
+                check(d);
+                check(mx/d);
+            }
         }
         cout << res << '\n';
     };
