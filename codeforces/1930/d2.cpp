@@ -15,45 +15,15 @@ signed main() {
         int n;
         string s;
         cin >> n >> s;
-
-        int res = 0;
-        int sz = 0;
-        FOR(i, 0, n+1) {
-            if (i != n && s[i] == '1') {
-                ++sz;
-            } else {
-                int x = i - sz + 1;
-                int y = n - i + 1;
-                cout << "sadding " << (sz+2)/3 * x * y << '\n';
-                res += (sz+2)/3 * x * y;
-                FOR(k, 1, sz) {
-                    cout << "adding " << (k+2)/3 * (x + y + sz - k - 1) << '\n';
-                    res += (k+2)/3 * (x + y + sz - k - 1);
-                }
-                sz = 0;
+        
+        vi res(n+3);
+        ROF(i, n-1, -1) {
+            if (s[i] == '0') res[i] = res[i+1];
+            else {
+                res[i] = n-i + res[i+3];
             }
         }
-
-        int ans = 0;
-        FOR(i, 0, n) {
-            vi comps;
-            FOR(j, i+1, n+1) {
-                comps.clear();
-                int sz = 0;
-                FOR(k, i, j+1) {
-                    if (k != j && s[k] == '1') {
-                        ++sz;
-                    } else if (sz != 0) {
-                        comps.push_back(sz);
-                        ans += (sz+2)/3;
-                        sz = 0;
-                    }
-                }
-            }
-            for (int tt : comps) cout << tt << ' ';
-            cout << '\n';
-        }
-        cout << res << ' ' << ans << '\n';
+        cout << accumulate(res.begin(), res.end(), 0LL) << '\n';
     };
 
     int T;
