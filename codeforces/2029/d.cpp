@@ -23,21 +23,19 @@ signed main() {
             G[v].insert(u);
         }
 
-        vvi res(3);
+        vvi res;
         FOR(u, 0, n) {
             while (G[u].size() >= 2) {
                 int v = *G[u].begin();
                 int w = *G[u].rbegin();
-                res[0].push_back(u+1);
-                res[1].push_back(v+1);
-                res[2].push_back(w+1);
-                G[u].erase(G[u].begin());
-                G[u].erase(G[u].find(w));
-                G[v].erase(G[v].find(u));
-                G[w].erase(G[w].find(u));
+                res.push_back({u+1, v+1, w+1});
+                G[u].erase(v);
+                G[u].erase(w);
+                G[v].erase(u);
+                G[w].erase(u);
                 if (G[v].find(w) != G[v].end()) {
-                    G[v].erase(G[v].find(w));
-                    G[w].erase(G[w].find(v));
+                    G[v].erase(w);
+                    G[w].erase(v);
                 } else {
                     G[v].insert(w);
                     G[w].insert(v);
@@ -55,31 +53,18 @@ signed main() {
         }
 
         if (a != -1) {
-            vi seen(n, -1);
-            function<void(int)> dfs = [&](int u) {
-                for (int v : G[u]) if (seen[v] == -1) {
-                    seen[v] = seen[u];
-                    dfs(v);
-                }
-            };
-            seen[a] = a;
-            dfs(a);
+            if (a > b) swap(a, b);
             FOR(u, 0, n) {
-                if (seen[u] == -1) {
-                    seen[u] = u;
-                    dfs(u);
-                    res[0].push_back(a+1);
-                    res[1].push_back(b+1);
-                    res[2].push_back(u+1);
+                if (G[u].empty() || u != a && *(G[u].begin()) > u) {
+                    res.push_back({a+1, b+1, u+1});
                     b = u;
                 }
             }
         }
 
-        int r = res[0].size();
-        cout << r << '\n';
-        FOR(i, 0, r) {
-            cout << res[0][i] << ' ' << res[1][i] << ' ' << res[2][i] << '\n';
+        cout << res.size() << '\n';
+        for (vi& v : res) {
+            cout << v[0] << ' ' << v[1] << ' ' << v[2] << '\n';
         }
     };
 
