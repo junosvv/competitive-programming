@@ -29,35 +29,21 @@ signed main() {
             G[v].push_back(u);
         }
 
-        vi dp(n), op(n);
-        function<void(int,int)> dfs = [&](int u, int p) {
-            dp[u] = 0;
-            int smdps = 0, children = 0;
-            for (int v : G[u]) if (v != p) {
-                dfs(v, u);
-                op[u] += op[v];
+        vi par(n, -1), val = l;
+        function<void(int)> dfs = [&](int u) {
+            for (int v : G[u]) if (par[v] == -1) {
+                par[v] = u;
+                dfs(v);
+                val[u] = max(val[u], val[v]);
             }
-            for (int v : G[u]) if (v != p) {
-                dp[v] += op[u] - op[v];
-                dp[u] = max(dp[u], dp[v]);
-                smdps += dp[v];
-                ++children;
-            }
-            int dbal = dp[u] * children - smdps;
-            int k = 
-            l[u] += op[u];
-            r[u] += op[u];
-            op[u] += max(0LL, dp[u] - r[u]);
-            dp[u] = max(dp[u], l[u]);
-            // cout << "Node " << u << " has " << dp[u] << " op " << op[u] << '\n';
+            val[u] = min(val[u], r[u]);
         };
-        dfs(0, 0);
+        par[0] = 0;
+        dfs(0);
 
-        // FOR(u, 0, n) {
-        //     cout << "Node " << u << " has " << dp[u] << " op " << op[u] << '\n';
-        // }
-
-        cout << dp[0] << '\n';
+        int res = val[0];
+        FOR(u, 1, n) res += max(0LL, val[u] - val[par[u]]);
+        cout << res << '\n';
     };
 
     int T;
